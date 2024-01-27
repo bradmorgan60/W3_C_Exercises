@@ -1,0 +1,1 @@
+printf("p points to the full address = %p \n", p);
