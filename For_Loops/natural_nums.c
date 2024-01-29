@@ -22,7 +22,6 @@ int main() {
     
     printf("%d ", i);
     
-
     }
     
     printf("\nSum: %d\n", sum);
