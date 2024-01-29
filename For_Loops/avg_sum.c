@@ -3,20 +3,22 @@
 int main() {
 
     int sum = 0;
-    double num, avg;
+    double avg, num;
 
-    printf("Enter the number of integers: ");
+    printf("Enter an integer: ");
     scanf("%lf", &num);
 
     for (int i = 1; i <= num; i++) {
-        sum += i;
+        sum = sum + i;
+        printf("%d ", i);
     }
 
         avg = sum / num;
 
-        printf("Sum: %d\n", sum);
+
+        printf("\nSum: %d\n", sum);
         printf("Average: %lf\n", avg);
 
-        
+
     return 0;
 }
