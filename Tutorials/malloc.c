@@ -1,37 +1,33 @@
-#include <stdio.h>  
+#include <stdio.h>
 #include <stdlib.h>
 
-struct Heap {
-    int *ptr, num1, i, sum;
-};
+// How can we dynamically allocate memory?
+// Malloc is a function we can use to dynamically allocate memory on the heap
 
+// In this exercise, we are dynamically allocating memory based on a user input...cool!
 
 int main() {
 
-    int *ptr, num1, i, sum = 0;
+    int num1, *ptr, sum = 0;
 
     printf("Enter the number of elements: ");
     scanf("%d", &num1);
 
-    ptr = (int*) malloc(num1 * sizeof(int)); // 4 bytes
+    ptr = (int*)malloc(num1 * sizeof(int)); // int = 4 bytes
 
-    // if memory cannot be allocated
-    if (ptr == NULL)
-    {
-        printf("Memory cannot be allocated...");
-        exit(0);
-        } else {
+    if (ptr == NULL) {
+        printf("Unabale to allocate memory...");
 
-    printf("Enter elements: ");
-    for (int i = 0; i < num1; i++) {
-        scanf("%d", ptr + i);
-        sum += *(ptr + i);
-
-    }
+    } else {
+        for (int i = 0; i < num1; i++) {
+            // sum = sum + i;
+            scanf("%d", ptr + i); // confused by logic here
+            sum += *(ptr + i); // confused by logic here
         }
 
-    
-    printf("Sum: %d\n", sum);
+        printf("Sum: %d \n", sum);
+    }
+
     free(ptr);
 
 
