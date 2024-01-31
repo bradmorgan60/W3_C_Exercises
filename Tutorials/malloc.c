@@ -13,22 +13,22 @@ int main() {
     printf("Enter the number of elements: ");
     scanf("%d", &num1);
 
-    ptr = (int*)malloc(num1 * sizeof(int)); // int = 4 bytes
+    ptr = (int*)malloc(num1 * sizeof(int));
 
-    if (ptr == NULL) {
-        printf("Unabale to allocate memory...");
+   if (ptr == NULL) {
+        printf("Unable to allocate memory...");
 
-    } else {
+   } else {
+        printf("Enter elements: ");
         for (int i = 0; i < num1; i++) {
-            // sum = sum + i;
-            scanf("%d", ptr + i); // confused by logic here
-            sum += *(ptr + i); // confused by logic here
+            scanf("%d", ptr + i);
+            sum += *(ptr + i);
         }
 
-        printf("Sum: %d \n", sum);
-    }
-
-    free(ptr);
+        printf("Sum: %d\n", sum);
+   }
+   
+   free(ptr);
 
 
     return 0;
