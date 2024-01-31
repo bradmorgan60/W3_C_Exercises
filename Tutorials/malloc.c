@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+/*
+How can we dynamically allocate memory?
+Malloc is a function we can use to dynamically allocate memory on the heap
 
-// How can we dynamically allocate memory?
-// Malloc is a function we can use to dynamically allocate memory on the heap
+In this exercise, we are dynamically allocating memory based on a user input...cool!
 
-// In this exercise, we are dynamically allocating memory based on a user input...cool!
+The malloc() function allocates memory and leaves the memory uninitialized, 
+The calloc() function allocates memory and initializes all bits to zero.
+
+*/
 
 int main() {
 
