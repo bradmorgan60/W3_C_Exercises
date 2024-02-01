@@ -5,7 +5,6 @@
 The malloc() function allocates memory and leaves the memory uninitialized, 
 The calloc() function allocates memory and initializes all bits to zero.
 
-
 */
 
 int main() {
