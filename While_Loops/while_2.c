@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main() {
-
     int number, sum = 0;
+    printf("Enter a positive integer: \n");
+    printf("Note: Enter 0 to stop the program.\n");
 
-    printf("Enter an integer to append to the array\n (Enter 0 to stop program) \n");
 
     while(1) {
         printf("Enter an integer: ");
@@ -17,10 +17,11 @@ int main() {
         else if (number > 0) {
             sum += number;
         }
+
     }
 
-    printf("The sum of the integers: %d \n", sum);
+    printf("Sum: %d\n", sum);
 
-    
+
     return 0;
 }
