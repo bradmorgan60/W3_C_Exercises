@@ -13,7 +13,8 @@ int main() {
     first = &num1;
     second = &num2;
 
-    sum = *first + *second;
+    sum = *first + *second; // we need to assign the * here to the new variables. If we do not, the program
+    // thinks we are referring to the addresses
 
     printf("Sum: %d\n", sum);
 
