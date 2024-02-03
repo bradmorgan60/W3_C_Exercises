@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int num1, num2, *first, *second, sum;
+
+    printf("Just adding pointers together...\n");
+    printf("Enter the first integer: ");
+    scanf("%d", &num1);
+
+    printf("Enter the second integer: ");
+    scanf("%d", &num2);
+
+    first = &num1;
+    second = &num2;
+
+    sum = *first + *second;
+
+    printf("Sum: %d\n", sum);
+
+    return 0;
+}
