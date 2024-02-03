@@ -22,6 +22,7 @@ int main() {
 
    if (ptr == NULL) {
         printf("Unable to allocate memory...");
+        return 1;
 
    } else {
         printf("Enter elements: ");
