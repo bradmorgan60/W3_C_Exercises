@@ -1,9 +1,19 @@
 #include <stdio.h>
 
+/*
+4. Write a program in C to add two numbers using pointers.
+Test Data :
+Input the first number : 5
+Input the second number : 6
+Expected Output :
+
+The sum of the entered numbers is : 11 
+*/
+
 int main() {
     int num1, num2, *first, *second, sum;
 
-    printf("Just adding pointers together...\n");
+    printf("Adding two pointers together\n");
     printf("Enter the first integer: ");
     scanf("%d", &num1);
 
@@ -13,8 +23,7 @@ int main() {
     first = &num1;
     second = &num2;
 
-    sum = *first + *second; // we need to assign the * here to the new variables. If we do not, the program
-    // thinks we are referring to the addresses
+    sum = *first + *second;
 
     printf("Sum: %d\n", sum);
 
