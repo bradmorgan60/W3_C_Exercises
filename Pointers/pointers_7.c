@@ -28,14 +28,15 @@ int main() {
     scanf("%d", &elements);
 
     ptr = (int*)malloc(elements * sizeof(int));
+    // For every input from the user, we need to dynamically allocate memory on the heap
 
     printf("Input %d elements into the list: \n", elements);
     for (int i = 0; i < elements; i++) {
         printf("Element: %d : ", i);
         scanf("%d", ptr + i);
-
     }
 
+    printf("\n");
     printf("The %d elements you entered are: \n", elements);
     for (int i = 0; i < elements; i++) {
         printf("Element - %d : %d \n", i, *(ptr + i));
