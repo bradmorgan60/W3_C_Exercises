@@ -44,3 +44,12 @@ int main() {
 
     return 0;
 }
+
+/*
+Utilizing Malloc to dynamically allocate memory to the based on how many elements the user selects
+Every integer has 4 bytes of memory. Therefore, we will multiply the number of elements by 4.
+
+Afterwards, we will implement a for loop that will stop each time the user is required to insert a number
+
+The output will display all of the choices the user selected.
+*/
