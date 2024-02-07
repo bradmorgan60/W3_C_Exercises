@@ -22,24 +22,24 @@ Expected Output :
 */
 
 int main() {
-    int elements, arr1[25], *ptr;
+    int elements, *memory;
 
     printf("Input the number of elements to store in the array: ");
     scanf("%d", &elements);
 
-    ptr = (int*)malloc(elements * sizeof(int));
+    memory = (int*)malloc(elements * sizeof(int));
     // For every input from the user, we need to dynamically allocate memory on the heap
 
     printf("Input %d elements into the list: \n", elements);
     for (int i = 0; i < elements; i++) {
         printf("Element: %d : ", i);
-        scanf("%d", ptr + i);
+        scanf("%d", memory + i);
     }
 
     printf("\n");
     printf("The %d elements you entered are: \n", elements);
     for (int i = 0; i < elements; i++) {
-        printf("Element - %d : %d \n", i, *(ptr + i));
+        printf("Element - %d : %d \n", i, *(memory + i));
     }
 
     return 0;
