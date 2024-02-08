@@ -17,7 +17,6 @@ void SwapLetters(char *ch1, char *ch2) {
 }
 
 // height of tree = length of string
-
 void changePermu(char *cht, int stno, int endno) {
     if (stno == endno) {
         printf("%s ", cht);
@@ -35,16 +34,14 @@ void changePermu(char *cht, int stno, int endno) {
             e.g. prints ABC and ACB
             ABC is the original, but is the recovery string
             */
-
-
         }
     }
-
 }
 
 int main() {
-    char str[] = "abc";
-    printf("Pointer: Generage permutations of a string\n");
+    char str[] = "abcd";
+
+    printf("Pointer: Generate permutations of a string\n");
     printf("=========================================\n");
     int n = strlen(str);
     printf("Permutations of %s: \n", str);
@@ -63,8 +60,5 @@ only one permutation * number of permutations
 N = 4
 traverse throught depth of 4
 O(N * N!)
-
-
-
 
 */
