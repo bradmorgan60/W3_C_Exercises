@@ -11,22 +11,24 @@ The sum of the entered numbers is : 11
 */
 
 int main() {
-    long num1, num2, *first, *second, sum;
+    int num1, num2, *first, *second, sum;
 
-    printf("Enter the first integer: ");
-    scanf("%ld", &num1);
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
 
-    printf("Enter the second integer: ");
-    scanf("%ld", &num2);
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
 
     first = &num1;
     second = &num2;
 
     sum = *first + *second;
 
-    printf("Sum: %ld\n", sum);
+    printf("Sum: %d\n", sum);
 
     return 0;
+
+
 }
 
 /*

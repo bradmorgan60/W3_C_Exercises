@@ -6,7 +6,7 @@ Input the first number : 5
 Input the second number : 6
 Expected Output :
 
- The sum of 5 and 6  is 11 
+The sum of 5 and 6  is 11 
 */
 
 long Add2Numbers(long *, long *);

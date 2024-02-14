@@ -5,7 +5,6 @@ void swap(int *p, int *q) {
     temp_val = *p;
     *p = *q;
     *q = temp_val;
-
 }
 
 int main()
