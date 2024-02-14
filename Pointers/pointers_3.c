@@ -38,15 +38,15 @@ Using only pointer variable :
 int main() {
     int m = 300;
     float fx = 300.600006;
-    char cht[] = "z";
+    char cht = 'z';
 
     printf("Demonstrate the use of * and & operator: \n");
     printf("----------------------\n");
     printf("Pointers using the & operator: \n");
 
-    printf("%p\n", &m);
-    printf("%p\n", &fx);
-    printf("%p\n", &cht);
+    printf("Address of m: %p\n", &m);
+    printf("Address of fx: %p\n", &fx);
+    printf("Address of cht: %p\n", &cht);
 
     printf("----------------------\n");
     printf("Pointers using the * operator: \n");
@@ -56,7 +56,7 @@ int main() {
 
     printf("m = %d\n", *(&m));
     printf("fx = %lf\n", *(&fx));
-    printf("cht = %s\n", *(&cht));
+    printf("cht = %c\n", *(&cht));
 
     printf("----------------------\n");
     printf("Using only pointer variable: \n");
@@ -71,18 +71,6 @@ int main() {
     printf("Address of m : %d\n", *ptr_m);
     printf("Address of fx : %lf\n", *ptr_fx);
     printf("Address of cht: %c\n", *ptr_cht);
-
-
-
-
-
-
-
-
-    
-
-
-    
 
 
     return 0;
