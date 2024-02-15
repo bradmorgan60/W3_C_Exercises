@@ -1,25 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int Add2Numbers(int *, int *);
+/*
+7. Write a program in C to store n elements in an array and print the elements using a pointer.
+Test Data :
+Input the number of elements to store in the array :5
+Input 5 number of elements in the array :
+element - 0 : 5
+element - 1 : 7
+element - 2 : 2
+element - 3 : 9
+element - 4 : 8
+Expected Output :
+
+ The elements you entered are :                                                                               
+ element - 0 : 5                                                                                              
+ element - 1 : 7                                                                                              
+ element - 2 : 2                                                                                              
+ element - 3 : 9                                                                                              
+ element - 4 : 8   
+
+*/
 
 int main() {
-    int num1, num2, sum;
+    int size, *ptr;
+    printf("Input the number of elements to store in the array: ");
+    scanf("%d", &size);
 
-    printf("Enter first number: ");
-    scanf("%d", &num1);
+    printf("Input the %d elements in the array: \n", size);
 
-    printf("Enter the second number: ");
-    scanf("%d", &num2);
+    ptr = calloc(size, sizeof(int));
 
-    sum = Add2Numbers(&num1, &num2);
+    for (int i = 0; i < size; i++) {
+        printf("Element - %d : ", i);
+        scanf("%d", ptr + i);
+    }
 
-    printf("The sum of %d and %d is %d\n", num1, num2, sum);
+    printf("The %d elements you entered are: \n", size);
+
+    for (int i = 0; i < size; i++) {
+        printf("Element - %d : %d \n", i, *(ptr + i));
+    }
+
+    
+
 
     return 0;
-}
-
-int Add2Numbers(int *n1, int *n2) {
-    int sum;
-    sum = *n1 + *n2;
-    return sum;
 }
