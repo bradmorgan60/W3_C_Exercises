@@ -19,7 +19,6 @@ Expected Output :
  element - 2 : 2                                                                                              
  element - 3 : 9                                                                                              
  element - 4 : 8   
-
 */
 
 int main() {
@@ -27,7 +26,7 @@ int main() {
     printf("Input the number of elements to store in the array: ");
     scanf("%d", &size);
 
-    printf("Input the %d elements in the array: \n", size);
+    printf("Input %d elements in the array: \n", size);
 
     ptr = calloc(size, sizeof(int));
 
@@ -36,14 +35,13 @@ int main() {
         scanf("%d", ptr + i);
     }
 
-    printf("The %d elements you entered are: \n", size);
+    printf("The %d elements entered are below \n", size);
 
     for (int i = 0; i < size; i++) {
-        printf("Element - %d : %d \n", i, *(ptr + i));
+        printf("Element-%d : %d\n", i, *(ptr + i));
     }
 
+    free(ptr);
     
-
-
     return 0;
 }
