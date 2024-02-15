@@ -22,7 +22,7 @@ Expected Output :
 */
 
 int main() {
-    int size, *ptr;
+    int size, *ptr, sum = 0;
     printf("Input the number of elements to store in the array: ");
     scanf("%d", &size);
 
@@ -39,9 +39,14 @@ int main() {
 
     for (int i = 0; i < size; i++) {
         printf("Element-%d : %d\n", i, *(ptr + i));
+        sum += *(ptr + i);    
     }
 
+    printf("Sum: %d\n", sum);
+    
+
     free(ptr);
+
     
     return 0;
 }
