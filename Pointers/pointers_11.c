@@ -38,7 +38,7 @@ int main() {
 
     printf("The value before swapping are: \n");
     for (int i = 0; i < size; i++) {
-        printf("Element-%d = %d \n", ptr[i], *(ptr + i));
+        printf("Element-%d = %d \n", i + 1, *(ptr + i));
     }
 
     SwapNums(ptr, size);
