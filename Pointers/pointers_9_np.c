@@ -18,9 +18,9 @@ int main() {
             number[0] = number[i];
         }
     }
-    
 
     printf("The largest value : %d \n", number[0]);
+    // printf("The smallest value: %d \n", number[0]);
 
 
 }
