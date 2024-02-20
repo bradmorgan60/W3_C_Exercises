@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 void Sorting(int, int*);
+void SumArray(int, int*);
 
 int main() {
     int size, tmp, *arr;
@@ -26,6 +27,8 @@ int main() {
         printf("Element-%d : %d\n", i + 1, *(arr + i));
     }
 
+    SumArray(size, arr);
+
     free(arr);
 
     return 0;
@@ -46,6 +49,9 @@ void Sorting(int size, int *arr) {
                 If the value on the left > right, swap
                 If value on left < right, do not swap
                 This will be iterated through the entire array.
+
+                index i checks for the value on the left
+                index j checks for the value directly to the right of index i
                 */
             }
 
@@ -61,7 +67,12 @@ We are using a nested For Loop to solve this problem. This is because we are com
 Index i :  0  1   2   3   4
 Values i: 15 25  45  82  89
 
-
-
-
 */
+
+void SumArray(int size, int *arr) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += *(arr + i);
+    }
+    printf("Sum: %d\n", sum);
+}
