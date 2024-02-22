@@ -1,28 +1,24 @@
 #include <stdio.h>
-#include <stdlib.h>
+
+int Add(int*, int*);
 
 int main() {
-    int size, *ptr, sum = 0;
+    int num1, num2;
+    printf("Enter the first integer: ");
+    scanf("%d", &num1);
 
-    printf("Enter the length of the array: ");
-    scanf("%d", &size);
+    printf("Enter the second integer: ");
+    scanf("%d", &num2);
 
-    printf("\nEnter the %d integers below: \n", size);
+    printf("Sum: %d\n", Add(&num1, &num2));
 
-    ptr = calloc(size, sizeof(int));
-
-    for (int i = 0; i < size; i++) {
-        printf("Element-%d: ", i);
-        scanf("%d", (ptr + i));
-    }
-
-    printf("--------\n");
-    printf("The integers entered are below: \n");
-    for (int i = 0; i < size; i++) {
-        printf("Element-%d : %d\n", i, *(ptr + i));
-        sum += *(ptr + i);
-    }
-    printf("Sum: %d\n", sum);
 
     return 0;
+}
+
+int Add(int *first, int *second) {
+    int sum; 
+    sum = *first + *second;
+    return sum;
+
 }
