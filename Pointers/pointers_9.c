@@ -16,27 +16,28 @@ The Largest element is :  9.00
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
-    int num1, *ptr;
+int main() {
+    int size, *arr;
+    printf("Program will find the largest element in the array.\n");
+    printf("Input the number of elements: ");
+    scanf("%d", &size);
 
-    printf("Enter the number of values required: ");
-    scanf("%d", &num1);
+    printf("Enter the %d elements below: \n", size);
+    arr = calloc(size, sizeof(int));
+    for (int i = 0; i < size; i++) {
+        printf("Element-%d: ", i+1);
+        scanf("%d", (arr + i));
 
-    ptr = (int*)malloc(num1 * sizeof(int));
-    for (int i = 0; i < num1; i++) {
-        printf("Number %d: ", i + 1);
-        scanf("%d", (ptr + i));
     }
 
-    for (int i = 1; i < num1; i++) {
-        if (*ptr < *(ptr + i)) 
+    // Requirement is to find the largest number in the array
+    for (int i = 1; i < size; i++) {
+        if (*arr < *(arr + i))
         {
-            *ptr = *(ptr + i);
-        }
-        
+            *arr = *(arr + i);
     }
-
-    printf("Largest element: %d\n", *ptr);
-
+    
+}
+    printf("The largest element: %d\n", *arr);
     return 0;
 }
