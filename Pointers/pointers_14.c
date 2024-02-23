@@ -3,6 +3,7 @@
 
 void Sorting(int, int*);
 void SumArray(int, int*);
+void MultArray(int, int*);
 
 int main() {
     int size, tmp, *arr;
@@ -26,9 +27,8 @@ int main() {
     for (int i = 0; i < size; i++) {
         printf("Element-%d : %d\n", i + 1, *(arr + i));
     }
-
     SumArray(size, arr);
-
+    MultArray(size, arr);
     free(arr);
 
     return 0;
@@ -75,4 +75,12 @@ void SumArray(int size, int *arr) {
         sum += *(arr + i);
     }
     printf("Sum: %d\n", sum);
+}
+
+void MultArray(int size, int *arr) {
+    int product = 1; // cannot multiply by 0, must initialize at 1
+    for (int i = 0; i < size; i++) {
+        product *= *(arr + i);
+    }
+    printf("Product: %d\n", product);
 }

@@ -20,7 +20,6 @@ int main() {
 
     printf("Factorial of %d = %d \n", num, fact);
 
-
     return 0;
 }
 
