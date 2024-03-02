@@ -6,7 +6,7 @@ int main() {
     printf("Input the number of rows in the tree: ");
     scanf("%d", &rows);
 
-    space = rows + rows - 1;
+    space = rows;
 
     for (i = 1; i <= rows; i++) {
         for (k = space; k >= 1; k--) {
