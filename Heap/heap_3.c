@@ -27,10 +27,12 @@ void minHeapify(int arr[], int n, int i) {
         minHeapify(arr, n, smallest);
     }
 
-    
+}
 
-
-    
+void buildMinHeap(int arr[], int n) {
+    for (int i = n; i >= 0; i--) {
+        minHeapify(arr, n, i);
+    }
 }
 
 
@@ -42,10 +44,31 @@ void printArray(int arr[], int n) {
 }
 
 int main() {
-    int randomArray[] = {4, 8, 12, 10, 7};
+    int randomArray[] = {4, 10, 3, 5, 1};
     int randomSize = sizeof(randomArray) / sizeof(randomArray[0]);
 
     printf("Random Array: ");
     printArray(randomArray, randomSize);
+
+    // Build Heap
+    buildMinHeap(randomArray, randomSize);
+
+    printf("Min heap from Random Array: ");
+    printArray(randomArray, randomSize);
+
+    printf("\n");
+
+    int sortedArray[] = {8, 7, 5, 4, 2};
+    int sortedSize = sizeof(randomArray) / sizeof(randomArray[0]);
+
+    printf("Sorted Array: ");
+    printArray(sortedArray, sortedSize);
+
+    // Build Heap
+    buildMinHeap(sortedArray, sortedSize);
+
+    printf("Min heap from Sorted Array: ");
+    printArray(sortedArray, sortedSize);
+
     return 0;
 }
