@@ -1,79 +1,65 @@
-#include <stdio.h> // library for input / output for printf function
-#include <stdlib.h> // library for dynamic memory allocation
+#include <stdio.h>
+#include <stdlib.h>
 
-#define MAX_HEAP_SIZE 100 // define the max size of the heap
+#define MAX_HEAP_SIZE 100 // max size of the heap...keep this in mind as we work on the program
 
-// Function used to swap two elements in the heap
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+/*
+Write a C program that implements the basic operations of a heap - insert, delete, and display.
+*/
+
+struct Heap {
+    int arr[MAX_HEAP_SIZE];
+    int size;
 }
 
-// Maintain the max heap property after an element is inserted
-void heapifyDown(int arr[], int size, int index) {
+// Adding this to swap elements on the heap if a condition is met
+void swap(int *num1, int *num2) {
+    int temp = *num1;
+    *num1 = *num2;
+    *num2 = temp;
+}
+
+// Function to maintain the max heap property after an element is inserted
+void HeapifyUp(struct Heap *heap, int index) {
+    int parent = (index - 1) / 2;
+
+    while (index > 0 && heap->arr[index] > heap->arr[parent])
+    {
+        swap(&heap->arr[index], &heap->arr[parent]);
+        index = parent;
+        parent = (index - 1) / 2; // Update the parent index
+    }
+}
+
+// just like in exercise 2, except we have the array and size in the struct
+void HeapifyDown(struct Heap *heap, int index) { 
+    int largest = index;
     int leftChild = 2 * index + 1;
     int rightChild = 2 * index + 2;
-    int largest = index;
 
-    if (leftChild < size && arr[leftChild] > arr[largest])
-    {
+    if (leftChild < heap->size && heap->arr[leftChild] > heap->arr[largest])
+    {   
         largest = leftChild;
     }
 
-    if (rightChild < size && arr[rightChild] > arr[largest])
+    if (rightChild < heap->size && heap->arr[rightChild] > heap->arr[largest])
     {
         largest = rightChild;
     }
 
-    if (largest != index)
+    if (index != largest)
     {
-        swap(&arr[index], &arr[largest]);
-        heapifyDown(arr, size, largest);
+        swap(&heap->arr[index], &heap->arr[largest]);
+        HeapifyDown(heap, largest);
     }
+    
+    
 }
 
-void buildMaxHeap(int arr[], int size) {
-    for (int i = (size / 2) - 1; i >= 0; i--) {
-        heapifyDown(arr, size, i);
-    }
-}
 
-void display(int arr[], int size) {
-    printf("Array elements: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
+
+
 
 int main() {
-    // Test with a random array
-    int randomArray[] = {6, 8, 12, 7, 1};
-    int randomSize = sizeof(randomArray) / sizeof(randomArray[0]); // integer = 4 bytes
-    // printf("%d \n", randomSize);
-
-    printf("Original Random Array: \n");
-    display(randomArray, randomSize);
-
-    buildMaxHeap(randomArray, randomSize);
-
-    printf("\n");
-    printf("Max Heap of Random Array: \n");
-    display(randomArray, randomSize);
-
-    // Test with sorted array
-    int sortedArray[] = {19, 12, 8, 6, 2};
-    int sortedSize = sizeof(sortedArray) / sizeof(sortedArray[0]);
-
-    printf("\nOriginal Sorted Array: \n");
-    display(sortedArray, sortedSize);
-
-    buildMaxHeap(sortedArray, sortedSize);
-
-    printf("\nMax Heap from Sorted Array:\n");
-    display(sortedArray, sortedSize);
-
-
     return 0;
 }
