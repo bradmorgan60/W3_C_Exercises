@@ -1,49 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(int *arr, int size) {
-    for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (*(arr + i) > *(arr + j))
-            {
-                int temp = *(arr + i);
-                *(arr + i) = *(arr + j);
-                *(arr + j) = temp;
-            }
-        }
-    }
-}
+void Ascending_Order(int*, int);
+void Descending_Order(int*, int);
+void printArray(int*, int);
 
-void UserInput(int *arr, int size) {
+int main() {
+    int *arr, size;
+
     printf("Enter the size of the array: ");
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
+
     for (int i = 0; i < size; i++) {
         printf("Element-%d : ", i + 1);
         scanf("%d", (arr + i));
     }
-    for (int i = 0; i < size; i++) {
-        printf("Element-%d: %d\n", (i + 1), *(arr + i));
-    }
+    
+    printf("Original array: \n");
+    printArray(arr, size);
+
+    Ascending_Order(arr, size);
+    printArray(arr, size);
+
+    Descending_Order(arr, size);
+    printArray(arr, size);
+
+    return 0;
 }
 
-int main() {
-    int size, *arr, i, j;
-    
-    // UserInput(arr, size);
-    printf("Size of array: ");
-    scanf("%d", &size);
-
-    arr = calloc(size, sizeof(int));
-    printf("Original array...\n");
-    for (int i = 0; i < size; i++) {
-        printf("Element-%d: ", i + 1);
-        scanf("%d", arr + i);
-    }
-    
-    // Ascending Sortinng algorithm
-    printf("Ascending Order....\n");
+void Ascending_Order(int *arr, int size) {
+    printf("Ascending order...\n");
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
             if (*(arr + i) > *(arr + j))
@@ -53,13 +41,15 @@ int main() {
                 *(arr + j) = temp;
             }
         }
-    printf("Element-%d : %d \n", i + 1, *(arr + i));
+    // printf("%d ", *(arr + i));
     }
+    // printf("\n");
+    
+}
 
-    printf("\n");
-    // Descending Sorting Algorithm
-    printf("Descending Order....\n");
-     for (int i = 0; i < size; i++) {
+void Descending_Order(int *arr, int size) {
+    printf("Descending order...\n");
+    for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
             if (*(arr + i) < *(arr + j))
             {
@@ -68,13 +58,15 @@ int main() {
                 *(arr + j) = temp;
             }
         }
-    printf("Element-%d : %d \n", i + 1, *(arr + i));
-    
+    // printf("%d ", *(arr + i));
     }
+    // printf("\n");
+}
 
-    
-    
-    // swap(arr, size);
-
-    return 0;
+void printArray(int *arr, int size) {
+     for (int i = 0; i < size; i++) {
+        // printf("Element-%d: %d\n", (i + 1), *(arr + i));
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
 }
