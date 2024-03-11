@@ -27,6 +27,8 @@ int main() {
     Descending_Order(arr, size);
     printArray(arr, size);
 
+    free(arr);
+
     return 0;
 }
 
