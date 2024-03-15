@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Function takes an array, size, and index as input and ensures that the subtree rooted at the index maintains the min-heap property
-//
+// The heap is a tree data structure and we need to arrange the root node and child nodes accordingly
 void minHeapify(int arr[], int n, int i) {
     int smallest = i;     // smallest is the root
     int left = 2 * i + 1; // left child
@@ -34,7 +34,6 @@ void buildMinHeap(int arr[], int n) {
         minHeapify(arr, n, i);
     }
 }
-
 
 void printArray(int arr[], int n) {
     for (int i = 0; i < n; i++) {

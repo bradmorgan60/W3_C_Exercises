@@ -1,24 +1,33 @@
 #include <stdio.h>
 
-int Add(int*, int*);
+void swap(int *a, int *b);
 
 int main() {
-    int num1, num2;
-    printf("Enter the first integer: ");
-    scanf("%d", &num1);
+    int x, y;
 
-    printf("Enter the second integer: ");
-    scanf("%d", &num2);
+    printf("Pointers and swap...\n");
+    x = 10;
+    y = 5;
 
-    printf("Sum: %d\n", Add(&num1, &num2));
+    printf("x: %d --> %p\n", x, &x);
+    printf("y: %d --> %p\n", y, &y);
+
+    printf("\n");
+    x = 10;
+    y = 5;
 
 
-    return 0;
+    swap(&x, &y);
+
+    printf("x: %d --> %p\n", x, &x);
+    printf("y: %d --> %p\n", y, &y);
+
+    // printf("&x: %p\n", &x);
+    // printf("&y: %p\n", &y);
 }
 
-int Add(int *first, int *second) {
-    int sum; 
-    sum = *first + *second;
-    return sum;
-
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
