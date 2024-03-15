@@ -14,6 +14,7 @@ int main() {
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
+    
     for (int i = 0; i < size; i++) {
         printf("Element-%d: ", i + 1);
         scanf("%d", (arr + i));
