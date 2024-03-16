@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+int my_compare(int a, int b) {
+    if (a > b) return -1;
+    else return 1;
+}
+
+// Bubble sort algorithm
+
+void BubbleSort(int size, int *arr, int (*compare)(int, int)) {
+    for (int i = 0; i < size; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (my_compare(arr[i], arr[j] > 0)) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        printf("%d ", arr[i]);
+    }
+}
+
 void Descending(int size, int *arr) {
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
@@ -14,6 +35,7 @@ void Descending(int size, int *arr) {
     }
 }
 
+// Bubble sort algorithm
 void Ascending(int size, int *arr) {
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
@@ -45,6 +67,8 @@ int main() {
     for (int i = 0; i < size; i++) { 
         printf("%d ", *(arr + i)); 
         }
+    // printf("\n");
+    // BubbleSort(size, arr, my_compare);
 
     printf("\nAscending order: ");
     Ascending(size, arr);
