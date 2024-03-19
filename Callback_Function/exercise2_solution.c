@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+// Callback function fundamentals
 void Apple() {
     printf("Apple");
 }
