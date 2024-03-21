@@ -13,12 +13,12 @@ Descending order: 9 8 7 5 2 0
 #include <stdlib.h>
 
 int compare(int x, int y) {
-    if (x > y) return -1;
-    else return 1;
+    if (x > y) return 1;
+    else return -1;
 }
 
 // Bubble sort algorithm - use a nested for loop to compare indexes side-by-side
-void Bubble_Sort(int size, int *arr) {
+void Bubble_Sort(int size, int *arr, int (*compare)(int, int)) {
     int temp;
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
@@ -27,7 +27,6 @@ void Bubble_Sort(int size, int *arr) {
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
-
             // printf("%d ", arr[i]);
         }
         printf("%d ", arr[i]);
@@ -58,7 +57,7 @@ int main() {
     printf("\n");
 
     printf("Ascending Order: ");
-    Bubble_Sort(size, arr);
+    Bubble_Sort(size, arr, compare);
     
 
     return 0;
