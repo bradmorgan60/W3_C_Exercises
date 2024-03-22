@@ -27,7 +27,6 @@ int result(int *arr, int size, int initial_value, my_pointer operation) {
     }
 
     return result;
-
 }
 
 int main() {
