@@ -4,62 +4,58 @@ Expected Output:
 
 Original array elements: 10 20 30 40 50 60 
 Sum: 210
-Product: 720,000,000
+Product: 720000000
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef int (*my_pointer)(int, int); // accepts 2 integers, returns an integer
+
 int add(int a, int b) {
     return a + b;
 }
+
 int multiply(int a, int b) {
     return a * b;
 }
 
-// void my_pointer(int *(math)(int)) {
-//     int size, *arr;
-
-//     printf("Enter the size of the array: ");
-//     scanf("%d", &size);
-
-//     arr = calloc(size, sizeof(int));
-
-//     // User input the values for the arrays
-//     for (int i = 0; i < size; i++) {
-//         printf("Element-%d: ", i + 1);
-//         scanf("%d", (arr + i));
-//     }
-
-//     // Display the array which was input by the user...
-//     // This array will be used for our calculations
-//     for (int i = 0; i < size; i++) {
-//         printf("%d ", *(arr + i));
-//     }
-// }
-
-typedef int (* operation_func_t)(int, int);
-int calculate(int * arr, size_t n, int initial_value, operation_func_t operation) {
+int result(int *arr, int size, int initial_value, my_pointer operation) {
     int result = initial_value;
-    for (size_t i = 0; i < n; i++) {
-        result = operation(result, arr[i]);  // callback function used here
+    for (int i = 0; i < size; i++) {
+        result = operation(result, arr[i]);
     }
+
     return result;
+
 }
 
 int main() {
-    int arr[] = {10,20,30,40,50,60};
-    size_t n = sizeof(arr) / sizeof(arr[0]);
-    int sum, product;
+    int size, *arr;
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
 
-    printf("Original array:\n");
-    for (size_t i = 0; i < n; i++) {
-        printf("%d", arr[i]);
+    arr = calloc(size, sizeof(int));
+
+    // User will specify their own values in the array:
+    for (int i = 0; i < size; i++) {
+        printf("Element-%d: ", i+1);
+        scanf("%d", arr + i);
     }
 
+    // Print the original array specified by the user
+    printf("Original array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
+    printf("---- Mathematical operations ----");
+    // Calling our functions
+    int sum_result = result(arr, size, 0, add);
+    printf("\nSum: %d\n", sum_result);
 
-
-
+    int product_result = result(arr, size, 1, multiply);
+    printf("Product: %d\n", product_result);
 
     return 0;
 }
