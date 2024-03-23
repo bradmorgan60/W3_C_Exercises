@@ -10,51 +10,49 @@ Product: 720000000
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int (*my_pointer)(int, int); // accepts 2 integers, returns an integer
+typedef int (*my_pointer)(int, int); // function pointer returns an integer, accepts 2 integers
 
-int add(int a, int b) {
+int sum(int a, int b) {
     return a + b;
 }
 
-int multiply(int a, int b) {
+int product(int a, int b) {
     return a * b;
 }
 
-int result(int *arr, int size, int initial_value, my_pointer operation) {
+int calculate(int size, int *arr, int initial_value, my_pointer operation) { // I forgot to name the pointer here....
     int result = initial_value;
     for (int i = 0; i < size; i++) {
-        result = operation(result, arr[i]);
+        result = operation(result, arr[i]);    // This was the part I was confused on....
     }
-
     return result;
 }
 
 int main() {
     int size, *arr;
-    printf("Enter the size of the array: ");
+
+    printf("Enter size of array: ");
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
-
-    // User will specify their own values in the array:
     for (int i = 0; i < size; i++) {
-        printf("Element-%d: ", i+1);
+        printf("Number-%d: ", i + 1);
         scanf("%d", arr + i);
     }
 
-    // Print the original array specified by the user
-    printf("Original array: ");
+    printf("Original array: \n");
     for (int i = 0; i < size; i++) {
         printf("%d ", *(arr + i));
     }
     printf("\n");
-    printf("---- Mathematical operations ----");
-    // Calling our functions
-    int sum_result = result(arr, size, 0, add);
-    printf("\nSum: %d\n", sum_result);
 
-    int product_result = result(arr, size, 1, multiply);
-    printf("Product: %d\n", product_result);
+    int sum_result = calculate(size, arr, 0, sum);
+    int prod_result = calculate(size, arr, 1, product);
+
+    printf("Sum: %d\n", sum_result);
+    printf("Product: %d\n", prod_result);
+
+
 
     return 0;
 }
