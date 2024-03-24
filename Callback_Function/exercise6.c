@@ -10,44 +10,60 @@ Select an option:
 Average: 5.545455
 */
 
+/* 
+In order to find the median, we need to sort the array first. 
+If the array is odd, we just pick the middle value
+if the array is of even length, we need to add the two middle values, then divide by 2
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef double (*my_pointer)(int, int);
+typedef int (* my_pointer)(int, int);
 
 void sort(int size, int *arr) {
     int temp;
+    printf("\nSorted array: ");
     for (int i = 0; i < size; i ++) {
         for (int j = i + 1; j < size; j++) {
-            if (arr[i] < arr[j]) {
+            if (arr[i] > arr[j]) {
                 temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
         }
-        printf("Sorted array: %d", arr[i]);
+        printf("%d ", *(arr + i));
     }
 }
 
-double mean(int size, int sum) {
-    return sum / size;
-}
-double median(int size, int sum) {
-    return sum / 2;
-}
-
-double calculate(int size, int *arr, int initial, my_pointer operation) {
-    int result = initial;
+double mean(int size, int *arr) {
+    double sum = 0;
     for (int i = 0; i < size; i++) {
-        result = operation(result, arr[i]);
+        sum += *(arr + i);
     }
-    return result;
+
+    return (double) sum / size;
+}
+double median(int size, int *arr) {
+    sort(size, arr);
+    double median;
+   if (size % 2 == 0) {
+        median = (double) (arr[size / 2] + arr[(size / 2) - 1]) / 2;
+   }
+   else {
+        median = arr[size / 2];
+   }
+
+    return median;
+}
+
+double calculate(int size, int *arr, my_pointer operation) {
+    return operation(size, arr);
 }
 
 int main() {
     int size, *arr;
     int option = 0;
-    double mean_result, median_result;
 
     printf("Enter size of the array: ");
     scanf("%d", &size);
@@ -58,10 +74,15 @@ int main() {
         scanf("%d", arr + i);
     }
 
-    printf("Original array: \n");
+    printf("--------------\n");
+
+    printf("Original array: ");
     for (int i = 0; i < size; i++) {
         printf("%d ", *(arr + i));
     }
+
+    sort(size, arr);
+
     printf("\n");
 
     printf("\nSelect an option: \n");
@@ -70,16 +91,22 @@ int main() {
     printf("Option: ");
     scanf("%d", &option);
 
+    double result;
+
     switch (option)
     {
     case 1:
-        mean_result = calculate(size, arr, 1, mean);
-        printf("Average: %f", mean_result);
+        result = calculate(size, arr, mean);
+        printf("Average: %f", result);
         break;
     
     case 2:
-        median_result = calculate(size, arr, 1, median);
-        printf("Median: %f", median_result);
+        result = calculate(size, arr, median);
+        printf("Median: %f", result);
+        break;
+    
+    default: 
+        printf("Invalid option...\n");
         break;
     }
 
