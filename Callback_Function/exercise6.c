@@ -19,7 +19,7 @@ if the array is of even length, we need to add the two middle values, then divid
 #include <stdio.h>
 #include <stdlib.h>
 
-// typedef double (*my_pointer)(int, int);
+typedef double (*my_pointer)(int size, int *arr);
 
 // The median requires us to sort the array
 void sort(int size, int *arr) { 
@@ -60,8 +60,8 @@ double median(int size, int *arr) {
     return median;
 }
 
-double calculate(int size, int *arr, double (* my_operator)(int size, int *arr)) {
-    return my_operator(size, arr);
+double calculate(int size, int *arr, my_pointer operator) {
+    return operator(size, arr);
 }
 
 int main() {
