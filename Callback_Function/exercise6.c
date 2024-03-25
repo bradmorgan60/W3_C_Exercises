@@ -19,12 +19,13 @@ if the array is of even length, we need to add the two middle values, then divid
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int (* my_pointer)(int, int);
+// typedef double (*my_pointer)(int, int);
 
-void sort(int size, int *arr) {
+// The median requires us to sort the array
+void sort(int size, int *arr) { 
     int temp;
-    printf("\nSorted array: ");
-    for (int i = 0; i < size; i ++) {
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
             if (arr[i] > arr[j]) {
                 temp = arr[i];
@@ -32,40 +33,41 @@ void sort(int size, int *arr) {
                 arr[j] = temp;
             }
         }
-        printf("%d ", *(arr + i));
+        printf("%d ", arr[i]);
     }
 }
-
+// Mean --> Sum / # of values
 double mean(int size, int *arr) {
-    double sum = 0;
+    int sum = 0;
     for (int i = 0; i < size; i++) {
         sum += *(arr + i);
     }
-
     return (double) sum / size;
 }
+
+// median may differ based on the size of the array. if odd, pick middle value of sorted array
+// if even, add the two middle together, then divide by 2. sorted array still applies
 double median(int size, int *arr) {
-    sort(size, arr);
     double median;
-   if (size % 2 == 0) {
-        median = (double) (arr[size / 2] + arr[(size / 2) - 1]) / 2;
-   }
-   else {
+    sort(size, arr);
+
+    if (size % 2 == 0) {
+        median = (double)(arr[size / 2] + (arr[(size / 2 - 1)])) / 2;
+    } else {
         median = arr[size / 2];
-   }
+    }
 
     return median;
 }
 
-double calculate(int size, int *arr, my_pointer operation) {
-    return operation(size, arr);
+double calculate(int size, int *arr, double (* my_operator)(int size, int *arr)) {
+    return my_operator(size, arr);
 }
 
 int main() {
+    // begin with asking user to input the size of the array
     int size, *arr;
-    int option = 0;
-
-    printf("Enter size of the array: ");
+    printf("Enter the size of the array: (# of integers): ");
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
@@ -74,41 +76,36 @@ int main() {
         scanf("%d", arr + i);
     }
 
-    printf("--------------\n");
-
     printf("Original array: ");
     for (int i = 0; i < size; i++) {
         printf("%d ", *(arr + i));
     }
 
-    sort(size, arr);
+    printf("\n");
+
+    // sort(size, arr);
 
     printf("\n");
 
-    printf("\nSelect an option: \n");
-    printf("1. Calculate average of array elements: \n");
-    printf("2. Calculate median of array elements: \n");
-    printf("Option: ");
+    int option;
+    printf("Select an option: \n");
+    printf("1. Calculate average of said array elements: \n");
+    printf("2. Calculate median of said array elements: \n");
     scanf("%d", &option);
-
-    double result;
 
     switch (option)
     {
     case 1:
-        result = calculate(size, arr, mean);
-        printf("Average: %f", result);
+        printf("Average: %lf \n", calculate(size, arr, mean));
         break;
-    
     case 2:
-        result = calculate(size, arr, median);
-        printf("Median: %f", result);
+        printf("\nMedian: %lf\n", calculate(size, arr, median));
         break;
     
-    default: 
-        printf("Invalid option...\n");
+    default:
+        printf("Invalid selection...\n");
         break;
     }
-
+    
     return 0;
 }
