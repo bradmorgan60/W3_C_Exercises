@@ -18,8 +18,6 @@ int max(int size, int *arr) {
         if (arr[0] < arr[i]) {
             arr[0] = arr[i];
         }
-    
-
     }
     return arr[0];
     }
@@ -29,10 +27,8 @@ int min(int size, int *arr) {
         if (arr[0] > arr[i]) {
             arr[0] = arr[i];
         }
-    
     }
     return arr[0];
-    
 }
 
 int calculate(int size, int *arr, my_pointer operator) {
@@ -58,7 +54,6 @@ int main() {
     printf("\n");
     printf("Max: %d\n", calculate(size, arr, max));
     printf("Min: %d\n", calculate(size, arr, min));
-
 
     return 0;
 }
