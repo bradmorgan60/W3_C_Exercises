@@ -61,6 +61,7 @@ void insert(struct Heap *heap, int key) {
         printf("Heap overflow....\n");
         return;
     }
+    
     heap->arr[heap->size] = key; // insert the key at the end of the heap...what does that mean
     heap->size++; // increase size of the heap
 
