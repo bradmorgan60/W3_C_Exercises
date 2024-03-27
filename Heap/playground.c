@@ -59,7 +59,7 @@ void insert(struct Heap *heap, int key) {
     heap->arr[heap->size] = key;
     heap->size++;
 
-    // HeapifyUp();
+    HeapifyUp(heap, heap->size - 1);
 
 }
 
@@ -70,7 +70,17 @@ void display(struct Heap *heap) {
     printf("\n");
 }
 
-void delete() {
+void delete(struct Heap *heap) {
+    if (heap->size < 0) {
+        printf("Heap underflow...\n");
+        return -1;
+    }
+
+    int maxElement = heap->arr[0];
+    heap->arr[0] = heap->arr[heap->size - 1];
+    heap->size--;
+
+    HeapifyDown(0, heap);
 
 }
 

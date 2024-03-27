@@ -54,14 +54,14 @@ void HeapifyDown(struct Heap *heap, int index) {
     }
 }
 
-// What if we want to insert an element into the heap?
+// What if we want to insert an element into the heap? This could be anywhere in the heap
 void insert(struct Heap *heap, int key) {
     if (heap->size >= MAX_HEAP_SIZE)
     {
         printf("Heap overflow....\n");
         return;
     }
-    
+
     heap->arr[heap->size] = key; // insert the key at the end of the heap...what does that mean
     heap->size++; // increase size of the heap
 
