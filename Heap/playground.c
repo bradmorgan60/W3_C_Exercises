@@ -18,27 +18,49 @@ void swap(int *num1, int *num2) {
     *num2 = temp;
 }
 
+void HeapifyUp(struct Heap *heap, int index) {
+    int parent = (index - 1) / 2;
+
+    while (index > 0 && heap->arr[index] > heap->arr[parent]) {
+        swap(heap->arr[index], heap->arr[parent]);
+        index = parent;
+        parent = (index - 1) / 2;
+    }
+}
+
 void HeapifyDown(int index, struct Heap *heap) {
+    // we can think of this being structured in an array. Largest number will be at index of 0
+    // left node will ALWAYS be one index to the left of the right node (side by side)
     int largest = index;
     int leftChild = 2 * index + 1;
     int rightChild = 2 * index + 2;
 
-    if (leftChild < heap->size && heap->arr[leftChild] < heap->arr[index]) {
-        largest = index;
-    }
-    if (rightChild < heap->size && heap->arr[rightChild] < heap->arr[index]) {
-        largest = index;
-    }
+   if (leftChild < heap->size && heap->arr[leftChild] > heap->arr[largest]) {
+        largest = leftChild;
+   }
 
-    if (index != largest) {
-        swap(&heap->arr[index], &heap->arr[largest]);
+   if (rightChild < heap->size && heap->arr[rightChild] > heap->arr[largest]) {
+        largest = rightChild;
+   }
+
+   if (index != largest) {
+        swap(heap->arr[index], heap->arr[largest]);
         HeapifyDown(largest, heap);
-    }
-
+   }
+  
 }
 
-void insert() {
-    
+void insert(struct Heap *heap, int key) {
+    printf("Inserting element in heap: ");
+    if (heap->size >= MAX_HEAP_SIZE) {
+        printf("Heap overflow...");
+        return;
+    }
+    heap->arr[heap->size] = key;
+    heap->size++;
+
+    // HeapifyUp();
+
 }
 
 void display(struct Heap *heap) {
