@@ -3,6 +3,8 @@
 
 #define MAX_HEAP_SIZE 100
 
+typedef int (* my_pointer)(int, int);
+
 void swap(int *num1, int *num2) {
     int temp;
     temp = *num1;
@@ -60,7 +62,6 @@ void BuildMaxHeap(int size, int *arr) {
     for (int i = (size / 2) - 1; i >= 0; i--) {
         HeapifyDown(i, size, arr);
     }
-    
 }
 
 int main() {
