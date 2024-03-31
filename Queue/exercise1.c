@@ -26,42 +26,37 @@ Check the queue is empty or not? No
 
 struct Heap {
     int size;
-    int arr[MAX_HEAP_SIZE];
+    int *arr;
 };
 
 void display(struct Heap *heap) {
-    printf("Queue elements are: ");
+    printf("Original array: ");
     for (int i = 0; i < heap->size; i++) {
         printf("%d ", *(heap->arr + i));
     }
     printf("\n");
 }
 
-void insert(struct Heap *heap, int key) {
-    heap->arr[heap->size] = key;
-    heap->size++;
-}
+void User_Input(struct Heap *heap) {
+    printf("Initialize the queue!\n");
+    printf("Enter the size of the queue: ");
+    scanf("%d", &heap->size);
 
-void is_empty(struct Heap *heap) {
     for (int i = 0; i < heap->size; i++) {
-        if (heap->arr == NULL) {
-            printf("Array is empty...\n");
-            break;
-        } else {
-            printf("Array is not empty...\n");
-            break;
-        }
+        printf("Num-%d: ", (i + 1));
+        scanf("%d", (heap->arr + i));
     }
 }
 
-void User_Input(struct Heap *heap) {
-    printf("Initialize the queue!\n");
-    
-
+int is_empty(struct Heap *heap) {
+    if (heap->arr == NULL) return 1;
+    else return -1;
 }
 
 int main() {
-    struct Heap heap;    
-    // printf("\n");
+    struct Heap *heap;
+    heap->arr = calloc(heap->size, sizeof(int));
+    User_Input(heap);
+    display(heap);
     return 0;
 }
