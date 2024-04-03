@@ -28,7 +28,6 @@ void enqueue(int item) {
 
     back++;
     queue[back] = item;
-
 }
 
 void display() {
