@@ -30,7 +30,7 @@ void display() {
         return;
     }
     printf("Queue elements: ");
-    for (int i = front; i < back; i++) {
+    for (int i = front; i <= back; i++) {
         printf("%d ", queue[i]);
     }
     printf("\n");
@@ -60,29 +60,37 @@ int main() {
     int *arr = calloc(size, sizeof(int));
     printf("Is the queue empty? %s", is_empty() ? "Yes\n":"No\n");
 
-    printf("Initialize the queue!\n");
-    printf("Enter the size of the queue: ");
-    scanf("%d", &size);
+    if (is_empty() == true) {
+        printf("Initialize the queue!\n");
+        printf("Enter the size of the queue: ");
+        scanf("%d", &size);
 
         for (int i = 0; i < size; i++) {
             int number;
             printf("Element-%d: ", i + 1);
-            scanf("%d", arr + i);
+            scanf("%d", &number);
             enqueue(number);
         }
 
         display();
-        printf("Is the queue empty? %s", is_empty() ? "Yes\n":"No\n");
 
-        printf("Enter number of elements to add to the queue: \n");
-        int new_element;
+        int new_elements;
+        printf("Insert number of elements to add to the queue: ");
+        scanf("%d", &size);
 
+        printf("%d elements will be added...\n", size);
+        
         printf("Element-%d: ", size + 1);
-        scanf("%d", &new_element);
-        enqueue(new_element);
+        scanf("%d", &new_elements);
+        enqueue(new_elements);
 
+        
         display();
 
+
+
+
+    }
     
 
     return 0;
