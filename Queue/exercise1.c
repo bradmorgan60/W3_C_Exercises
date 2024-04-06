@@ -58,6 +58,7 @@ void enqueue(int number) {
 int main() {
     int size, size2;
     int *arr = calloc(size, sizeof(int));
+    int length = 0;
     printf("Is the queue empty? %s", is_empty() ? "Yes\n":"No\n");
 
     if (is_empty() == true) {
@@ -70,19 +71,29 @@ int main() {
             printf("Element-%d: ", i + 1);
             scanf("%d", &number);
             enqueue(number);
+
+            length += i;
         }
 
         display();
 
-        int new_elements;
+        
         printf("Insert number of elements to add to the queue: ");
         scanf("%d", &size);
-
         printf("%d elements will be added...\n", size);
+
+        for (int i = front; i < size; i++) {
+            int new_elements;
+            printf("Element-%d: ", i + 1);
+            scanf("%d", &new_elements);
+            enqueue(new_elements);
+        }
+
+
         
-        printf("Element-%d: ", size + 1);
-        scanf("%d", &new_elements);
-        enqueue(new_elements);
+        // printf("Element-%d: ", size + 1);
+        // scanf("%d", &new_elements);
+        // enqueue(new_elements);
 
         
         display();
