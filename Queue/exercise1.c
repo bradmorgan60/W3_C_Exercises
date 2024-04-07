@@ -82,6 +82,8 @@ int main() {
         scanf("%d", &size);
         printf("%d elements will be added...\n", size);
 
+        
+
         for (int i = front; i < size; i++) {
             int new_elements;
             printf("Element-%d: ", i + 1);
