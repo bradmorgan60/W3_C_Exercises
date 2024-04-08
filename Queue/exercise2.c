@@ -81,8 +81,12 @@ int main() {
 
         display();
 
-        printf("Insert element into the queue\n");
-        enqueue(5);
+        printf("Insert element into the queue!\n");
+        printf("Enter the queue: ");
+        int number;
+        scanf("%d", &number);
+        enqueue(number);
+        
         display();
     }
 
