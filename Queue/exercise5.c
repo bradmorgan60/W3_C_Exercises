@@ -53,6 +53,15 @@ void enqueue(int number) {
     queue[back] = number;
 }
 
+void dequeue() {
+    if (front == -1 || front > back) {
+        printf("Queue is empty\n");
+        return;
+    }
+    front++;
+}
+
+// size of the array / size of the int
 
 int main() {
     if (is_empty() == true) {
@@ -63,23 +72,22 @@ int main() {
         printf("\nEnter the size of the queue: ");
         scanf("%d", &size);
 
-        int sum = 0;
+        int array_size;
         for (int i = 0; i < size; i++) {
             int number;
             printf("Num-%d: ", i + 1);
             scanf("%d", &number);
-            enqueue(number);
-
-            sum += queue[i];
+            enqueue(number);   
         }
+
+        int arr[] = {1,2,3,4};
+
+        array_size = sizeof(arr) / sizeof(arr[0]);
+        printf("%d", array_size);
+
         display();
-        printf("Sum: %d\n", sum);
-
-        enqueue(5);
-        display();
-
-        printf("Sum: %d\n", sum);
-
+        printf("Array size: %d\n", size);
+    
     }
 
     return 0;
