@@ -46,6 +46,77 @@ void display() {
     printf("\n");
 }
 
+// if the queue is full, no more integers will be allowed
+void enqueue(int number) {
+    if (back == MAX_SIZE - 1) {
+        printf("Queue is full. No more integers may be added\n");
+        return;
+    }
+    if (front == -1) {
+        front = 0;  // if the queue is empty, we will begin the count at 0
+    }
+    back++;
+    queue[back] = number;
+}
+
+void dequeue(int number) {
+    if (front == -1 || front > back) {
+        printf("Queue is empty\n");
+        return;
+    }
+    front++;
+    queue[front] = number;
+}
+
+// The purpose of the int function is so we can incorporate the function in to a printf statement. Just need to return the count
+int count() {
+    int size = 0;
+    if (back != -1 && front != -1) {
+        for (int i = front; i <= back; i++) {
+            size++;
+        }
+    }
+    
+    return size;
+
+}
+
+int is_empty() {
+    if (front == -1 || front > back) return 1;
+    else return 0;
+}
+
 int main() {
+
+    if (is_empty() == true) {
+        int size;
+        printf("Initialize the queue!\n");
+        printf("Enter the size of the queue: ");
+        scanf("%d", &size);
+        for (int i = 0; i < size; i++) {
+            int number;
+            printf("Num-%d: ", i + 1);
+            scanf("%d", &number);
+            enqueue(number);
+        }
+
+        display();
+        printf("Number of elements: %d\n", count());
+
+        int size2;
+        printf("Enter number of elements to remove: ");
+        scanf("%d", &size2);
+        for (int i = front; i < size2; i++) {
+            int remove;
+            printf("Num-%d: ", i + 1);
+            scanf("%d", &remove);
+            dequeue(remove);
+        }
+
+        display();
+        printf("Number of elements: %d\n", count());
+
+    }
+
     return 0;
 }
