@@ -65,7 +65,7 @@ void dequeue(int number) {
         return;
     }
     front++;
-    queue[front] = number;
+    // queue[front] = number;
 }
 
 // The purpose of the int function is so we can incorporate the function in to a printf statement. Just need to return the count
@@ -76,9 +76,7 @@ int count() {
             size++;
         }
     }
-    
     return size;
-
 }
 
 int is_empty() {
@@ -87,12 +85,12 @@ int is_empty() {
 }
 
 int main() {
-
     if (is_empty() == true) {
         int size;
         printf("Initialize the queue!\n");
         printf("Enter the size of the queue: ");
         scanf("%d", &size);
+        
         for (int i = 0; i < size; i++) {
             int number;
             printf("Num-%d: ", i + 1);
@@ -106,9 +104,10 @@ int main() {
         int size2;
         printf("Enter number of elements to remove: ");
         scanf("%d", &size2);
+
         for (int i = front; i < size2; i++) {
             int remove;
-            printf("Num-%d: ", i + 1);
+            printf("Remove-front: %d: ", i + 1);
             scanf("%d", &remove);
             dequeue(remove);
         }
