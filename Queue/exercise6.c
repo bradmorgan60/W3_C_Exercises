@@ -24,16 +24,15 @@ int back = -1;
 int queue[MAX_SIZE];
 
 void display() {
-    printf("Queue: ");
+    printf("\nQueue: ");
     for (int i = front; i <= back; i++) {
         printf("%d ", queue[i]);
     }
     printf("\n");
 }
 
-void reverse() {
+void reverse() { // this function is causing the issue...it is reading the original array and printing one number right to left each time called
     printf("Reversal: ");
-    printf("\n");
     int i;
     for (i = front; i <= back / 2; i++) {
         int temp = queue[front];
@@ -61,6 +60,7 @@ void enqueue(int number) {
 }
 
 void dequeue() {
+    printf("\nDequeue: ");
     if (front == -1 || front > back) {
         printf("Queue is empty\n");
         return;
@@ -85,12 +85,15 @@ int main() {
 
     display();
     reverse();
+    
 
     enqueue(100);
     enqueue(300);
+    display();
 
     dequeue();
     dequeue();
+    display();
 
     reverse();
     
