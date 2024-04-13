@@ -19,84 +19,57 @@ Reverse Queue, elements are:
 
 #define MAX_SIZE 100
 
-int front = -1;
-int back = -1;
-int queue[MAX_SIZE];
+typedef struct {
+    int front;
+    int back;
+    int queue[MAX_SIZE];
+} Queue;
 
-void display() {
-    printf("\nQueue: ");
-    for (int i = front; i <= back; i++) {
-        printf("%d ", queue[i]);
+void enqueue(Queue* q, int number) {
+    if (q->back == MAX_SIZE - 1) {
+        printf("Queue is full. No more integers may be added\n");
+        return;
+    }
+    if (q->front == -1 || q->front > q->back) {
+        q->front = 0;
+    }
+
+    q->back++;
+    q->queue[q->back] = number;
+}
+
+Queue* create_queue() {
+    int size;
+    Queue* q = (Queue*)malloc(sizeof(Queue)); // need to allocate memory address space for the queue
+    q->front = -1;
+    q->back = -1;
+    return q;
+
+}
+
+void display(Queue* q) {
+    printf("Queue: ");
+    for (int i = q->front; i <= q->back; i++) {
+        printf("%d ", q->queue[i]);
     }
     printf("\n");
 }
 
-void reverse() { // this function is causing the issue...it is reading the original array and printing one number right to left each time called
-    printf("Reversal: ");
-    int i;
-    for (i = front; i <= back / 2; i++) {
-        int temp = queue[front];
-        queue[front] = queue[back];
-        queue[back] = queue[temp];
-    }
-    printf("%d", queue[i]);
-}
-
-int is_empty() {
-    if (front == -1 || front > back) return 1;
-    else return 0;
-}
-
-void enqueue(int number) {
-    if (back == MAX_SIZE - 1) {
-        printf("Queue is full\n");
-        return;
-    }
-    if (front == -1 || front > back) {
-        front = 0;
-    }
-    back++;
-    queue[back] = number;
-}
-
-void dequeue() {
-    printf("\nDequeue: ");
-    if (front == -1 || front > back) {
-        printf("Queue is empty\n");
-        return;
-    }
-    front++;
-}
-
 int main() {
-    int size, *arr;
-
+    int size;
+    Queue* q = create_queue();
     printf("Enter the size of the queue: ");
     scanf("%d", &size);
 
-    arr = calloc(size, sizeof(int));
-
     for (int i = 0; i < size; i++) {
         int number;
-        printf("Element-%d: ", i+1);
+        printf("Num-%d: ", i + 1);
         scanf("%d", &number);
-        enqueue(number);
+        enqueue(q, number);
     }
 
-    display();
-    reverse();
-    
+    display(q);
 
-    enqueue(100);
-    enqueue(300);
-    display();
 
-    dequeue();
-    dequeue();
-    display();
 
-    reverse();
-    
-
-    return 0;
 }
