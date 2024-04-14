@@ -21,7 +21,7 @@ Queue* create_queue() {
 }
 
 int is_empty(Queue* q) {
-    if (q->front == -1 || q->front > q->back) return 1;
+    if (q->front == -1) return 1;
     else return 0;
 }
 
