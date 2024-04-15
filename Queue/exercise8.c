@@ -1,19 +1,18 @@
 /*
-7. Write a C program to calculate the sum of the elements in a queue.
+8. Write a C program to compute the average value of the elements in a queue.
 Expected Output:
 
 Queue elements are: 1 2 3 4 5 
-Sum of the elements in the queue is: 15
+Average of the elements in the queue is: 3.000000
 
 Remove 2 elements from the said queue:
 Queue elements are: 3 4 5 
-Sum of the elements in the queue is: 12
+Average of the elements in the queue is: 4.000000
 
 Insert 3 more elements:
-Queue elements are: 3 4 5 300 400 500 
-Sum of the elements in the queue is: 1212
+Queue elements are: 3 4 5 300 427 519 
+Average of the elements in the queue is: 209.666672
 */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,11 +22,23 @@ typedef struct {
     int front;
     int back;
     int queue[MAX_SIZE];
+
 } Queue;
 
+/*
+Functions needed:
+1. Display (void)
+2. Enqueue (add integers to queue) - void
+3. Dequeue (remove integers from queue, left to right) - 
+4. Average (float) - return the average (sum of queue / number of integers)
+5. Check queue if empty
+6. Check queue if full
+7. Create queue
+8. Add (int) - add all integers in a queue
+*/
+
 Queue* create_queue() {
-    // setting the queue to empty
-    Queue* q = (Queue*)malloc(sizeof(Queue)); // need to be able to allocate memory address space for queue
+    Queue* q = (Queue*)malloc(sizeof(Queue));
     q->front = -1;
     q->back = -1;
     return q;
@@ -39,6 +50,7 @@ void display(Queue* q) {
     }
     printf("\n");
 }
+
 int isFull(Queue* q) {
     return q->back == MAX_SIZE - 1;
 }
@@ -48,12 +60,10 @@ int isEmpty(Queue* q) {
 }
 
 void enqueue(Queue* q, int number) {
-    // check if the queue is full first. if it is not full, you may add elements
     if (isFull(q)) {
         printf("Queue is full\n");
-        return;
-    } 
-    if (q->front == -1) {
+    }
+    if (q->front == -1 || q->front > q->back) {
         q->front = 0;
     }
 
@@ -61,62 +71,62 @@ void enqueue(Queue* q, int number) {
     q->queue[q->back] = number;
 }
 
-int dequeue(Queue* q) {
-    int item;
+void dequeue(Queue* q) {
     if (isEmpty(q)) {
         printf("Queue is empty\n");
+    } else {
+        q->front++;
     }
-    item = q->queue[q->front];
-    q->front++;  // removing from the front of the queue
-    if (q->front > q->back) {
-        q->front = q->back = -1;
-    }
-
-    return item;
 }
 
-void add(Queue* q) {
+int sum(Queue* q) {
     int size, sum = 0;
     for (int i = 0; i < size; i++) {
         sum += q->queue[i];
     }
-    printf("Sum of Queue: %d\n", sum); 
+    return sum;
 }
 
+float average(int size, int sum) {
+    return sum / size;
+}
 
 int main() {
-    int size, sum = 0;
     Queue* q = create_queue();
-
+    int size;
     if(isEmpty(q)) {
         printf("Initialize the queue!\n");
-        printf("Enter the size of the queue: ");
+        printf("Specify the size of the queue: ");
         scanf("%d", &size);
 
         for (int i = 0; i < size; i++) {
             int number;
-            printf("Num-%d: ", i+1);
+            printf("Num-%d: ", i + 1);
             scanf("%d", &number);
             enqueue(q, number);
         }
+        
     }
-
+    printf("Queue: ");
     display(q);
-    add(q);
 
-    printf("\nAdding 2 numbers to the queue\n");
-    enqueue(q, 100);
-    enqueue(q, 200);
+    // float avg = average(size, sum(q));
+    printf("Average: %lf\n", average(size, sum(q)));
 
-    display(q),
-    add(q);
+    enqueue(q, 10);
+    enqueue(q, 20);
+    enqueue(q, 30);
 
-    printf("\nRemoving 2 numbers from the queue\n");
+    printf("New queue: ");
+    display(q);
+    printf("Average: %lf\n", average(size, sum(q)));
+
     dequeue(q);
     dequeue(q);
-
+    
+    printf("New queue: ");
     display(q);
-    add(q);
+    printf("Average: %lf\n", average(size, sum(q)));
 
 
     return 0;
