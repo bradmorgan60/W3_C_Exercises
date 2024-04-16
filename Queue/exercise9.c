@@ -16,7 +16,7 @@ Maximum value in the queue is: 600
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_SIZE 5
+#define MAX_SIZE 50
 
 typedef struct {
     int front;
@@ -51,9 +51,9 @@ void enqueue(Queue* q, int number) {
         printf("Queue is full\n");
         return;
     }
-    
+
     if (q->front == -1 || q->front > q->back) {
-        printf("Queue is empty...initialize the queue!\n");
+        q->front = 0;
     }
 
     q->back++;
@@ -68,7 +68,17 @@ void dequeue(Queue* q) {
     q->front++;
 }
 
-void max(Queue* q) {
+int max(Queue* q) {
+    int max = q->queue[q->front];
+    if (q->front == -1 || q->front > q->back) {
+        printf("Queue is empty\n");
+    }
+    for (int i = q->front; i <= q->back; i++) {
+        if (q->queue[i] > max) {
+            max = q->queue[i];
+        }
+    }
+    return max;
 
 }
 
@@ -84,11 +94,35 @@ int main() {
         printf("Enter the size of the queue: ");
         scanf("%d", &size);
         for (int i = 0; i < size; i++) {
-            printf("%d ", i + 1);
+            printf("Num-%d: ", i + 1);
             scanf("%d", &number);
             enqueue(q, number);
         }
+}
+        printf("Queue: ");
+        display(q);
 
 
-    return 0;
+        int isMax = max(q);
+        printf("Max value: %d\n", isMax);
+
+
+        printf("Add 3 more elements to the queue: \n");
+        enqueue(q, 300);
+        enqueue(q, 400);
+
+        isMax = max(q);
+        printf("Max value: %d\n", isMax);
+
+
+        printf("Remove 3 more elements to the queue: \n");
+        dequeue(q);
+        dequeue(q);
+        dequeue(q);
+
+        isMax = max(q);
+        printf("Max value: %d\n", isMax);
+
+
+return 0;
 }
