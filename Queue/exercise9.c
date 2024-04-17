@@ -45,7 +45,6 @@ int max(Queue* q) {
     int max = q->queue[q->front];
     if (is_empty(q)) {
         printf("Queue is empty\n");
-        return;
     }
 
     for (int i = q->front; i <= q->back; i++) {
@@ -77,8 +76,57 @@ void enqueue(Queue* q, int number) {
     q->queue[q->back] = number;
 }
 
+void dequeue(Queue* q) {
+    if (is_empty(q)) {
+        printf("Cannot dequeue. Queue is empty\n");
+        return;
+    }
+    q->front++;
+}
+
 int main() {
+    int size;
     Queue* q = create_queue();
+
+    if (is_empty(q)) {
+        printf("Initialize the queue!\n");
+        printf("Enter queue size: ");
+        scanf("%d", &size);
+
+        for (int i = 0; i < size; i++) {
+            int number;
+            printf("Num-%d: ", i + 1);
+            scanf("%d", &number);
+            enqueue(q, number);
+        }
+    }
+    printf("First Queue: ");
+    display(q);
+
+    int is_max = max(q);
+    printf("Max of First Queue: %d\n", is_max);
+
+    printf("\n");
+
+    enqueue(q, 300);
+    enqueue(q, 400);
+
+    is_max = max(q);
+    printf("Second queue: ");
+    display(q);
+    printf("Max of Second Queue: %d\n", is_max);
+    printf("\n");
+
+    dequeue(q);
+    dequeue(q);
+    dequeue(q);
+
+
+    enqueue(q, 600);
+    printf("Third Queue: ");
+    is_max = max(q);
+    display(q);
+    printf("Max of Third Queue: %d\n", is_max);
 
     return 0;
 }
