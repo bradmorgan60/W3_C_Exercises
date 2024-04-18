@@ -88,7 +88,8 @@ int sum(Queue* q) {
 }
 
 float average(int size, int sum) {
-    return sum / size;
+    float average = sum / size;
+    return average;
 }
 
 int main() {
@@ -111,23 +112,31 @@ int main() {
     display(q);
 
     // float avg = average(size, sum(q));
-    printf("Average: %lf\n", average(size, sum(q)));
+    int my_sum = sum(q);
+    float my_average = average(size, my_sum);
+
+    printf("Average: %lf\n", my_average);
 
     enqueue(q, 10);
     enqueue(q, 20);
     enqueue(q, 30);
 
     printf("New queue: ");
+    my_sum = sum(q);
+    my_average = average(size, my_sum);
+
     display(q);
-    printf("Average: %lf\n", average(size, sum(q)));
+    printf("Average: %lf\n", my_average);
 
     dequeue(q);
     dequeue(q);
     
     printf("New queue: ");
     display(q);
-    printf("Average: %lf\n", average(size, sum(q)));
+    my_sum = sum(q);
+    my_average = average(size, my_sum);
 
+    printf("Average: %lf\n", my_average);
 
     return 0;
 }
