@@ -30,13 +30,26 @@ typedef struct {
     int queue[MAX_SIZE];
 } Queue;
 
-void sort(Queue* q, int num1, int num2) {
+Queue* create_queue() {
+    Queue* q = (Queue*)malloc(sizeof(Queue));
+    q->front = -1;
+    q->back = -1;
+    return q;
+}
+
+int compare(int a, int b) {
+    return a > b;
+}
+
+void sort(Queue* q) {
     int temp;
     for (int i = q->front; i <= q->back; i++) {
-        for (int j = q->front + 1; i <= q->back; i++) {
-            temp = num1;
-            num1 = num2;
-            num2 = temp;
+        for (int j = q->front + 1; j <= q->back; j++) {
+            if (compare(q->queue[i], q->queue[j])) {
+                temp = q->queue[i];
+                q->queue[i] = q->queue[j];
+                q->queue[j] = temp;
+            }
         }
     }
 }
@@ -56,8 +69,48 @@ int is_full(Queue* q) {
     return q->back == MAX_SIZE - 1;
 }
 
+void enqueue(Queue* q, int number) {
+    if (is_full(q)) {
+        printf("Queue is full\n");
+        return;
+    }
+
+    if (is_empty(q)) {
+        q->front = 0;
+    }
+
+    q->back++;
+    q->queue[q->back] = number;
+}
+
+void dequeue(Queue* q) {
+    if (is_empty(q)) {
+        printf("Queue is empty...unable to dequeue\n");
+    }
+    q->front++;
+}
 
 
 int main() {
+    Queue* q = create_queue();
+    int size;
+    if(is_empty(q)) {
+        printf("Initialize the queue!\n");
+        printf("Enter the size of the queue: ");
+        scanf("%d", &size);
+        for (int i = 0; i < size; i++) {
+            int number;
+            printf("Num-%d: ", i + 1);
+            scanf("%d", &number);
+            enqueue(q, number);
+        }
+    }
+    printf("Original queue: ");
+    display(q);
+
+    sort(q);
+
+    display(q);
+
     return 0;
 }
