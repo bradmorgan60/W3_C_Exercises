@@ -17,6 +17,7 @@ Minimum  value in the queue is: -427
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 50
+#define QUEUE_EMPTY INT_MIN
 
 typedef struct {
     int front;
@@ -28,8 +29,8 @@ typedef struct {
 // initializing the queue to be empty
 Queue* create_queue() {
     Queue* q = (Queue*)malloc(sizeof(Queue));
-    q->front = -1;
-    q->back = -1;
+    q->front = NULL;
+    q->back = NULL;
     return q;
 }
 
@@ -51,7 +52,7 @@ int min(Queue* q) {
 }
 
 int is_empty(Queue* q) {
-    return q->front == -1;
+    return q->front == NULL;
 }
 
 
