@@ -43,8 +43,10 @@ int compare(int a, int b) {
 
 void sort(Queue* q) {
     int temp;
-    for (int i = q->front; i <= q->back; i++) {
-        for (int j = q->front + 1; j < q->back; j++) {
+    int size = q->back - q->front + 1;
+    
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
             if (compare(q->queue[i], q->queue[j])) {
                 temp = q->queue[i];
                 q->queue[i] = q->queue[j];
@@ -108,15 +110,9 @@ int main() {
     printf("Original queue: ");
     display(q);
 
-    sort(q);
-    printf("Sorted queue??: ");
-    display(q);
-    
-
     printf("Sorted queue: ");
     sort(q);
     display(q);
-
 
     return 0;
 }
