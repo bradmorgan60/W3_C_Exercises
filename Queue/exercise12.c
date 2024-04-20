@@ -108,10 +108,15 @@ int main() {
     printf("Original queue: ");
     display(q);
 
+    sort(q);
+    printf("Sorted queue??: ");
+    display(q);
+    
+
     printf("Sorted queue: ");
     sort(q);
-
     display(q);
+
 
     return 0;
 }
