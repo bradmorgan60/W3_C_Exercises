@@ -42,8 +42,7 @@ void display(Queue* q) {
 }
 
 int min(Queue* q) {
-    int min = q->queue[q->front];
-    for (int i = q->front; i <= q->back; i++) {
+    int min = q->queue[q->front];    for (int i = q->front; i <= q->back; i++) {
         if (q->queue[i] < min) {
             q->queue[i] = min;
         }
