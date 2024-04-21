@@ -28,22 +28,15 @@ typedef struct {
     int front;
     int back;
     int queue[MAX_SIZE];
-
+    int size;
 } Queue;
 
 Queue* create_queue() {
     Queue* q = (Queue*)malloc(sizeof(Queue));
     q->front = -1;
     q->back = -1;
+
     return q;
-}
-
-int is_empty(Queue* q) {
-    return q->front == -1;
-}
-
-int is_full(Queue* q) {
-    return q->back == MAX_SIZE - 1;
 }
 
 void display(Queue* q) {
@@ -53,32 +46,16 @@ void display(Queue* q) {
     printf("\n");
 }
 
-/*
-Sorting funciton required
-Why? When calculating the median, half of the values are greater, half are less. We are finding the middle value
-Two scenarios:
-1. Find median of array with even number of integers
-2. Find media of array with odd number of integers (middle value)
-*/
-
-int median_even(Queue* q) {
-    int size = q->back - q->front;
-    return size % 2 == 0;
+int is_full(Queue* q) {
+    return q->back == MAX_SIZE - 1;
 }
 
-void median(Queue* q) {
-    int size = q->back - q->front + 1;
-    int temp;
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = i + 1; j < size; j++) {
-            temp = q->queue[i];
-            q->queue[i] = q->queue[j];
-            q->queue[j] = temp;
-        }
-    }
-    if (median_even(q)) {
-        printf("The array is of even length\n");
-    }
+int is_empty(Queue* q) {
+    return q->front == -1;
+}
+
+int is_even(Queue* q) {
+    return q->size % 2 == 0;
 }
 
 void enqueue(Queue* q, int number) {
@@ -91,28 +68,73 @@ void enqueue(Queue* q, int number) {
     }
 
     q->back++;
-    q->queue[q->back++] = number;
+    q->queue[q->back] = number;
+}
+
+int compare(int a, int b) {
+    return a > b;
+}
+
+void median(Queue* q) {
+    q->size = q->back - q->front + 1;
+    int temp[q->size];
+
+    for (int i = 0; i < q->size; i++) {
+        temp[i] = q->queue[q->front + 1];
+    }
+
+    // sort the array
+    for (int i = 0; i < q->size; i++) {
+        for (int j = i + 1; j < q->size; j++) {
+            if (compare(q->queue[i], q->queue[j])) {
+                int t = temp[i];
+                temp[i] = temp[j];
+                temp[j] = t;
+            }
+        }
+    }
+    if (is_even(q)) {
+        float median = (q->queue[q->size / 2] + q->queue[q->size / 2 - 1]) / 2;
+        printf("Median: %lf\n", median);
+    }
+    else {
+        float median = (q->queue[q->size / 2]);
+        printf("Median: %lf\n", median);
+    }
 }
 
 int main() {
-    int size;
     Queue* q = create_queue();
+    q->size = q->back - q->front + 1;
 
+    if (is_full(q)) {
+        printf("Queue is full\n");
+    }
+    
     if (is_empty(q)) {
         printf("Initalize the queue!\n");
-        printf("Size of queue: ");
-        scanf("%d", &size);
-        for (int i = 0; i < size; i++) {
+        printf("Enter size: ");
+        scanf("%d", &q->size);
+        for (int i = 0; i < q->size; i++) {
             int number;
             printf("Num-%d: ", i + 1);
             scanf("%d", &number);
             enqueue(q, number);
         }
+
+        if (is_even(q)) {
+            printf("Length is even\n");
+            display(q);
+            median(q);
+
+        } else {
+            printf("Length is odd\n");
+            display(q);
+            median(q);
+        }
+
     }
 
-    if (median_even(q)) {
-        printf("Queue is of even length\n");
-        
 
     return 0;
 }
