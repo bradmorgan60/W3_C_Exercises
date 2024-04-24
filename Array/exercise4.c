@@ -30,7 +30,7 @@ int main() {
     }
 
     for (int i = 0; i < size; i++) {
-        arr2[i] = arr1[i];
+        arr2[i] = arr1[i];    // do not reverse this (arr1[i] = arr2[i]), or else the program will spit out all 0s. not sure why that is
     }
 
     printf("First array: ");
