@@ -35,51 +35,72 @@ void sort(int *arr, int size) {
     }
 }
 
-int display(int *arr, int size) {
+void display(int *arr, int size) {
     for (int i = 0; i < size; i++) {
         printf("%d ", *(arr + i));
     }
-    return *arr;
-    // printf("\n");
+    printf("\n");
 
 }
 
 int main() {
-    int size, *arr;
+    int size1, size2, *arr1, *arr2, merged_array;
 
-    arr = calloc(size, sizeof(int));
+    arr1 = calloc(size1, sizeof(int));
+
     printf("Program will merge two arrays together in descending order\n");
     printf("\n-------------------------------------\n");
     printf("Input number of data elements to be stored in first array: ");
-    scanf("%d", &size);
-    printf("%d elements will be entered\n", size);
+    scanf("%d", &size1);
+    printf("%d elements will be entered\n", size1);
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size1; i++) {
         printf("element - %d : ", i);
-        scanf("%d", (arr + i));
+        scanf("%d", (arr1 + i));
     }
 
     printf("First array: ");
-    int arr1 = display(arr, size);
+    display(arr1, size1);
+
+    free(arr1);
+
+    arr2 = calloc(size2, sizeof(int));
 
     printf("\n-------------------------------------\n");
     printf("Input number of data elements to be stored in second array: ");
-    scanf("%d", &size);
-    printf("%d elements will be entered\n", size);
+    scanf("%d", &size2);
+    printf("%d elements will be entered\n", size2);
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size2; i++) {
         printf("element - %d : ", i);
-        scanf("%d", (arr + i));
+        scanf("%d", (arr2 + i));
     }
 
     printf("Second array: ");
-    int arr2 = display(arr, size);
+    display(arr2, size2);
 
-    int merged_array = arr1 + arr2;
+    merged_array = size1 + size2;
 
-    printf("Merged array: %d", merged_array);
+    int c[merged_array];
 
-    free(arr);
+    // for (int i = 0; i < size1; i++) {
+    //     c[i] = arr1[i];
+    // }
+
+    // for (int i = 0, j = size1;
+    //     j < merged_array && i < size1;
+    //     i++, j++) {
+    //         c[j] = arr2[i];
+    //     }
+
+    // for (int i = 0; i < merged_array; i++) {
+    //     printf("%d ", c[i]);
+    // }
+
+
+
+    free(arr1);
+    free(arr2);
 
     return 0;
 }
