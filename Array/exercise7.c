@@ -20,7 +20,7 @@ The merged array in decending order is :
 #include <stdlib.h>
 
 int compare(int a, int b) {
-    return a > b;
+    return a < b;
 }
 
 void sort(int *arr, int size) {
@@ -46,13 +46,14 @@ void display(int *arr, int size) {
 int main() {
     int size1, size2, *arr1, *arr2, merged_array;
 
-    arr1 = calloc(size1, sizeof(int));
+    
 
     printf("Program will merge two arrays together in descending order\n");
     printf("\n-------------------------------------\n");
     printf("Input number of data elements to be stored in first array: ");
     scanf("%d", &size1);
     printf("%d elements will be entered\n", size1);
+    arr1 = calloc(size1, sizeof(int));
 
     for (int i = 0; i < size1; i++) {
         printf("element - %d : ", i);
@@ -62,15 +63,13 @@ int main() {
     printf("First array: ");
     display(arr1, size1);
 
-    free(arr1);
-
-    arr2 = calloc(size2, sizeof(int));
 
     printf("\n-------------------------------------\n");
     printf("Input number of data elements to be stored in second array: ");
     scanf("%d", &size2);
     printf("%d elements will be entered\n", size2);
 
+    arr2 = calloc(size2, sizeof(int));
     for (int i = 0; i < size2; i++) {
         printf("element - %d : ", i);
         scanf("%d", (arr2 + i));
@@ -79,28 +78,28 @@ int main() {
     printf("Second array: ");
     display(arr2, size2);
 
+    free(arr2);
+
     merged_array = size1 + size2;
 
     int c[merged_array];
 
-    // for (int i = 0; i < size1; i++) {
-    //     c[i] = arr1[i];
-    // }
+    for (int i = 0; i < size1; i++) {
+        c[i] = arr1[i];
+    }
 
-    // for (int i = 0, j = size1;
-    //     j < merged_array && i < size1;
-    //     i++, j++) {
-    //         c[j] = arr2[i];
-    //     }
+    for (int i = 0, j = size1;
+        j < merged_array && i < size1;
+        i++, j++) {
+            c[j] = arr2[i];
+        }
 
-    // for (int i = 0; i < merged_array; i++) {
-    //     printf("%d ", c[i]);
-    // }
+    for (int i = 0; i < merged_array; i++) {
+        printf("%d ", c[i]);
+    }
 
+    sort(&merged_array, size1+size2);
 
-
-    free(arr1);
-    free(arr2);
 
     return 0;
 }
