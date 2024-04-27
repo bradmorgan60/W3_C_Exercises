@@ -34,7 +34,6 @@ void sort(int *arr, int size) {
             }
         }
     }
-    printf("\n");
 }
 
 void display(int *arr, int size) {
@@ -96,20 +95,18 @@ int main() {
         i++;
     }
 
+    // function exists for displaying the full array
     // for (i = 0; i < full_size; i++) {
     //     printf("%d ", merged_array[i]);
     // }
-
+    printf("\n---------------------\n");
     printf("Merged array: ");
     display(merged_array, full_size);
+
     sort(merged_array, full_size);
+
     printf("Sorted array: ");
     display(merged_array, full_size);
-
-    /*
-    Sort the array
-    */
-
 
     return 0;
 }
