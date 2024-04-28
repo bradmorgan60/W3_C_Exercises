@@ -105,7 +105,7 @@ int main() {
 
     sort(merged_array, full_size);
 
-    printf("Sorted array: ");
+    printf("Sorted array (descending order): ");
     display(merged_array, full_size);
 
     return 0;
