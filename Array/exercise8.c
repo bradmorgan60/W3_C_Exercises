@@ -17,39 +17,52 @@ The frequency of all elements of an array :
 #include <stdlib.h>
 
 void display(int *arr, int size) {
+    printf("Array: ");
     for (int i = 0; i < size; i++) {
         printf("%d ", *(arr + i));
     }
     printf("\n");
 }
 
-int main() {
-    int size, *arr;
-    int count = 0;
+void frequency(int *arr, int size) {
+    int freq[100], count;
+    for (int i = 0; i < size; i++) {
+        count = 1; // if the number appears, begin at 1
+        for (int j = i + 1; j < size; j++) {
+            if (arr[i] == arr[j]) {
+                count++;  // if a number matches, increment by 1
+                freq[j] = 0; // duplicate element frequency marked as 0
+            }
+        }
+        if (freq[i] != 0) {
+            freq[i] = count;
+        }
 
-    printf("Enter the number of integers for the array: ");
+        for (int i = 0; i < size; i++) {
+            if (freq[i] != 0) {
+                printf("%d appears %d times\n", arr[i], freq[i]);
+            }
+        }
+    } 
+}
+
+
+int main() {
+    int size, *arr, count, freq[100];
+    printf("Enter the size of the array: ");
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
 
     for (int i = 0; i < size; i++) {
-        printf("element - %d: ", i);
+        printf("element - %d : ", i);
         scanf("%d", (arr + i));
+        freq[i] = -1; // correction
     }
 
-    printf("Array: ");
+    // display(arr, size);
+    frequency(arr, size);
     display(arr, size);
-
-
-    for (int i = 0; i < size; i++) {
-        int counter = 1;
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i] == arr[j]) {
-                counter++;
-                
-            }
-        }
-    }
 
     return 0;
 }
