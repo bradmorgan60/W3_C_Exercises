@@ -43,7 +43,9 @@ void frequency(int *arr, int size) {
                 printf("%d appears %d times\n", arr[i], freq[i]);
             }
         }
-    } 
+        // free(arr);
+    }
+    printf("Memory address: %p\n", arr);
 }
 
 
@@ -52,7 +54,7 @@ int main() {
     printf("Enter the size of the array: ");
     scanf("%d", &size);
 
-    arr = calloc(size, sizeof(int));
+    arr = calloc(size, sizeof(int));  // 4 bytes per int
 
     for (int i = 0; i < size; i++) {
         printf("element - %d : ", i);
@@ -63,6 +65,7 @@ int main() {
     // display(arr, size);
     frequency(arr, size);
     display(arr, size);
+    free(arr);
 
     return 0;
 }
