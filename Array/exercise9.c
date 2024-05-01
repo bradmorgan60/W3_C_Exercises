@@ -30,17 +30,25 @@ void display(int *arr, int size) {
     printf("\n");
 }
 
-void display_max(int *arr, int size) {
-    for (int i = 1; i < size; i++) {
+void display_max_min(int *arr, int size) {
+    int min, max;
+
+    max = arr[0];
+    min = arr[0];
+    // initializing the array was the reason why the code was not working properly
+    for (int i = 0; i < size; i++) {
         if (max_compare(arr[i], arr[0])) {
-            printf("Max: %d\n", arr[i]);
+            
+            max = arr[i];
         }
         if (min_compare(arr[i], arr[0])) {
-            printf("Min: %d\n", arr[i]);
+            
+            min = arr[i];
         }
-
     }
-   
+
+    printf("Max: %d\n", max);
+    printf("Min: %d\n", min);
 }
 
 int main() {
@@ -50,15 +58,12 @@ int main() {
 
     arr = calloc(size, sizeof(int));
     for (int i = 0; i < size; i++) {
-        printf("element - %d: ", i);
+        printf("element - %d: ", i + 1);
         scanf("%d", (arr + i));
     }
 
-
     display(arr, size);
-    display_max(arr, size);
-
-    
+    display_max_min(arr, size);
 
     return 0;
 }
