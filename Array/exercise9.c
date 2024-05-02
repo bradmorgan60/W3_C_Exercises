@@ -22,6 +22,21 @@ int min_compare(int a, int b) {
     return a < b;
 }
 
+void compare(int *arr, int size) {
+    int min = arr[0];
+    int max = arr[0];
+    for (int i = 0; i < size; i++) {
+        if (max_compare(arr[i], arr[0])) {
+            max = arr[i];
+        }
+        if (min_compare(arr[i], arr[0])) {
+            min = arr[i];
+        }
+    }
+        printf("Max: %d\n", max);
+        printf("Min: %d\n", min);
+}
+
 void display(int *arr, int size) {
     printf("Array: ");
     for (int i = 0; i < size; i++) {
@@ -30,40 +45,19 @@ void display(int *arr, int size) {
     printf("\n");
 }
 
-void display_max_min(int *arr, int size) {
-    int min, max;
-
-    max = arr[0];
-    min = arr[0];
-    // initializing the array was the reason why the code was not working properly
-    for (int i = 0; i < size; i++) {
-        if (max_compare(arr[i], arr[0])) {
-            
-            max = arr[i];
-        }
-        if (min_compare(arr[i], arr[0])) {
-            
-            min = arr[i];
-        }
-    }
-
-    printf("Max: %d\n", max);
-    printf("Min: %d\n", min);
-}
-
 int main() {
-    int size, *arr; 
+    int size, *arr;
     printf("Enter the size of the array: ");
     scanf("%d", &size);
 
     arr = calloc(size, sizeof(int));
     for (int i = 0; i < size; i++) {
-        printf("element - %d: ", i + 1);
+        printf("element - %d : ", i);
         scanf("%d", (arr + i));
     }
 
     display(arr, size);
-    display_max_min(arr, size);
+    compare(arr, size);
 
     return 0;
 }
