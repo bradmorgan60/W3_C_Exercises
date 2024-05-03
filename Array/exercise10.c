@@ -47,8 +47,6 @@ void compare_odd(int *arr, int size) {
     }
 }
 
- 
-
 void display(int *arr, int size) {
     printf("Array: ");
     for (int i = 0; i < size; i++) {
@@ -71,7 +69,9 @@ int main() {
     display(arr, size);
     compare_even(arr, size);
     printf("\n");
+
     compare_odd(arr, size);
+    printf("\n");
 
     return 0;
 }
