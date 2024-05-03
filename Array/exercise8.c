@@ -26,27 +26,34 @@ void display(int *arr, int size) {
 
 void frequency(int *arr, int size) {
     // i is the first instance, j is the duplicate
+    printf("Frequency of each element: \n");
     int i, j;
     int count, freq[100];
+    // freq[i] = -1;
     for (i = 0; i < size; i++) {
         count = 1;
         for (j = i + 1; j < size; j++) {
+            // freq[i] = -1;
             if (arr[i] == arr[j]) {
                 count++;
                 freq[j] = 0;
+                // freq[i] = count;
             }
             
             if (freq[i] != 0) {
-            freq[i] = count;
+                freq[i] = count;
+                // printf("%d occurs %d times\n", arr[i], freq[i]);
             }
-            
             // printf("%d occurs %d times\n", arr[i], freq[j]);
         }
-       
-        printf("%d occurs %d times\n", arr[i], freq[i]);
     }
 
-    // printf("%d occurs %d times\n", arr[i], freq[i]);
+     for (int i = 0; i < size; i++) {
+        if (freq[i] != 0) {
+            // freq[i] = -1;
+            printf("%d occurs %d times\n", arr[i], freq[i]);
+        }
+    }
     
 }
 
@@ -61,6 +68,7 @@ int main() {
         scanf("%d", (arr + i));
         freq[i] = -1; // this is what prevented the frequency count...I did not initialize it here
     }
+    printf("\n");
 
     display(arr, size);
     frequency(arr, size);
