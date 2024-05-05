@@ -27,10 +27,22 @@ int compare(int a, int b) {
     return a > b;
 }
 
-void sort(int *arr, int size) {
+void ascending_sort(int *arr, int size) {
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
             if (compare(arr[i], arr[j])) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+ }
+
+ void descending_sort(int *arr, int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (!compare(arr[i], arr[j])) {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
@@ -53,8 +65,12 @@ int main() {
     // printf("Array: ");
     // display(arr, size);
 
-    printf("Sorted Array: ");
-    sort(arr, size);
+    printf("Ascending Sorted Array: ");
+    ascending_sort(arr, size);
+    display(arr, size);
+
+    printf("Descending Sorted Array: ");
+    descending_sort(arr, size);
     display(arr, size);
 
     return 0;
