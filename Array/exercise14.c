@@ -20,6 +20,13 @@ After Insert the element the new list is :
 #include <stdlib.h>
 
 void display(int *arr, int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
+}
+
+void display_insert(int *arr, int size) {
     for (int i = 0; i <= size; i++) {
         printf("%d ", *(arr + i));
     }
@@ -66,7 +73,7 @@ int main() {
     
     insert(arr, size);
     printf("New array: ");
-    display(arr, size);
+    display_insert(arr, size);
 
     return 0;
 }
