@@ -51,7 +51,7 @@ int min(int *arr, int size) {
     int i;
     for (int i = 0; i < size; i++) {
         if (compare(arr[0], arr[i])) {
-            min = arr[1];
+            min = arr[i];
         }
         
     }
