@@ -22,9 +22,7 @@ int main() {
 
             while (getchar() != '\n') {
                 continue;
-            
         }
-
         // continue;
     }
 
