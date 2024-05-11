@@ -11,30 +11,31 @@ Questions:
 #include <stdlib.h>
 #include <time.h>
 
+
 int main() {
-    printf("Program will generate a random number between 1 and 20. Try and guess the number!\n");
-    
-    // srand(time(NULL));
-    int target = rand() % 20 + 1; // generate randome number between 1 and 20
-
+    printf("Guess the random number\n");
+    srand(time(NULL));  // if this is not here, the number will be fixed. This will generate the random number
+    int target = rand() % 20 + 1;
+    int attempt = 0;
     int userGuess;
-    int attempts = 0;
 
-    printf("Guess the number between 1 and 20\n");
-
-    while (1) {
-        printf("Input your guess: ");
+    while(1) {
+        printf("Enter number: ");
         scanf("%d", &userGuess);
 
-        attempts++;
-        
+        attempt++;
+
         if (userGuess == target) {
-        printf("Congrats bro...you just guessed the correct number in %d attempt(s)\n", attempts);
-        break;
-    } else {
-        printf("Incorrect. Try again\n");
+            printf("Congrats! You guess the correct number in %d attempts", attempt);
+            break;
+        } else {
+            printf("Try again\n");
+        }
     }
-}
+
+    
+
+
 
     return 0;
 }
