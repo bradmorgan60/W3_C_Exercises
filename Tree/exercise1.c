@@ -7,9 +7,6 @@ Functions will need to be created to....
     2. Insert the node into the tree
     3. In-Order traversal of the binary tree
     4. Free the memory allocated to the binary tree
-
-
-
 */
 
 #include <stdio.h>
@@ -21,39 +18,75 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
-struct TreeNode* createNode(int value) {
-    struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-    // creating a variable that allows us to link it back to the struct
+struct TreeNode* create_node(int value) {
+    struct TreeNode* NewNode = (struct TreeNode*) malloc(sizeof(struct TreeNode));
 
-    if (newNode != NULL) {
-        newNode->data = value;
-        newNode->left = NULL;
-        newNode->right = NULL;
+    if (NewNode != NULL) {
+        NewNode->data = value;
+        NewNode->left = NULL;
+        NewNode->right = NULL;
     }
 
-    return newNode;
+    return NewNode;
 }
 
-struct TreeNode* insertNode(struct TreeNode* root, int value) {
-    // parameter is linked back to the struct
-    if (root = NULL) {
-        return createNode(value);
+struct TreeNode* insert_node(struct TreeNode* root, int value) {
+    /* 
+        The root will be the smallest value
+        If the new node is less than the root, insert to the left
+        if the new node is greater than the root, insert to the right
+    */
+    if (root == NULL) {
+        return create_node(value);
     }
-    
     if (value < root->data) {
-        root->left = insertNode(root->left, value);
+        root->left = insert_node(root->left, value);
     }
-
-    else if(value > root->data) {
-        root->right = insertNode(root->right, value);
+    if (value > root->data) {
+        root->right = insert_node(root->right, value);
     }
 
     return root;
 }
 
+void InOrderTraversal(struct TreeNode* root) {
+    if (root != NULL) {
+        InOrderTraversal(root->left);
+        printf("%d ", root->data);
+        InOrderTraversal(root->right);
+    }
+}
+
+void freeTree(struct TreeNode* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
 
 int main() {
-    int leftNode, rightNode, index;
+    printf("In-Order Traversal of the Binary Tree\n");
+    printf("-------------------------------------\n");
 
-     return 0;
+    struct TreeNode* root = NULL;
+    char choice;
+    int userInput, root;
+
+    do
+    {
+        printf("Enter your first number: ");
+        scanf("%d", &userInput);
+
+        root = insert_node(root, userInput);
+
+        printf("Enter another number? (y/n): ");
+        scanf("%c", &choice);
+    } while (choice == 'y' || choice == 'Y');
+
+    printf("In-Order Traversal of Binary Tree\n");
+    InOrderTraversal(root);
+    freeTree(root);
+    
+    return 0;
 }
