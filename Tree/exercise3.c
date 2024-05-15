@@ -64,6 +64,14 @@ void InOrderTraversal(struct TreeNode* root) {
     }
 }
 
+void NonOrderTraversal(struct TreeNode* root) {
+    if (root != NULL) {
+        NonOrderTraversal(root->right);
+        printf("%d ", root->data);
+        NonOrderTraversal(root->left);
+    }
+}
+
 int main() {
     struct TreeNode* root = NULL;
     int UserInput;
@@ -79,7 +87,14 @@ int main() {
 
     } while (UserInput != 0);
 
+    printf("In-Order Traversal ");
     InOrderTraversal(root);
+    printf("\n");
+
+    // FreeTree(root);
+
+    printf("Reverse-Order Traversal ");
+    NonOrderTraversal(root);
     printf("\n");
 
     FreeTree(root);
