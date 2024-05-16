@@ -20,31 +20,33 @@ struct TreeNode* createNode(int value) {
     return newNode;
 }
 
-// Function to insert a node into the binary search tree
+// Function to insert a node into the binary tree
 struct TreeNode* insertNode(struct TreeNode* root, int value) {
     if (root == NULL) {
         return createNode(value);
     }
 
-    // Insert into the left subtree
     if (value < root->data) {
         root->left = insertNode(root->left, value);
-    }
-    // Insert into the right subtree
-    else if (value > root->data) {
+    } else if (value > root->data) {
         root->right = insertNode(root->right, value);
     }
 
     return root;
 }
 
-// Function to perform in-order traversal and print elements in sorted order
-void inOrderTraversal(struct TreeNode* root) {
-    if (root != NULL) {
-        inOrderTraversal(root->left);
-        printf("%d ", root->data);
-        inOrderTraversal(root->right);
+// Function to calculate the height of a binary tree
+int treeHeight(struct TreeNode* root) {
+    if (root == NULL) {
+        return 0; // Height of an empty tree is 0
     }
+
+    // Recursively calculate the height of the left and right subtrees
+    int leftHeight = treeHeight(root->left);
+    int rightHeight = treeHeight(root->right);
+
+    // Return the maximum height of the left and right subtrees, plus 1 for the current node
+    return (leftHeight > rightHeight) ? (leftHeight + 1) : (rightHeight + 1);
 }
 
 // Function to free the memory allocated for the binary tree
@@ -61,9 +63,9 @@ int main() {
     int nodeValue;
     char choice;
 
-    // Insert nodes into the binary search tree
+    // Insert nodes into the binary tree
     do {
-        printf("Input a value to insert into the binary search tree (enter 0 to stop): ");
+        printf("Input a value to insert into the binary tree (enter 0 to stop): ");
         scanf("%d", &nodeValue);
 
         if (nodeValue != 0) {
@@ -72,10 +74,9 @@ int main() {
 
     } while (nodeValue != 0);
 
-    // Perform in-order traversal and print elements in sorted order
-    printf("\nIn-order Traversal (Sorted Order) of the Binary Search Tree: ");
-    inOrderTraversal(root);
-    printf("\n");
+    // Calculate and display the height of the binary tree
+    int height = treeHeight(root);
+    printf("\nHeight of the Binary Tree: %d\n", height);
 
     // Free allocated memory
     freeTree(root);

@@ -40,24 +40,34 @@ struct TreeNode* insert_node(struct TreeNode* root, int value) {
     return root;
 }
 
+int TreeHeight(struct TreeNode* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int leftHeight = TreeHeight(root->left);
+    int rightHeight = TreeHeight(root->right);
+
+    return (leftHeight > rightHeight) ? (leftHeight + 1) : (rightHeight + 1);
+}
+
 
 void FreeTree(struct TreeNode* root) {
     if (root != NULL) {
         FreeTree(root->left);
-        printf("%d ", root->data);
+        // printf("%d ", root->data);
         FreeTree(root->right);
         free(root);
     }
-    printf("\n");
 }
 
-void display(struct TreeNode* root, int size) {
-    printf("Height of Tree: ");
-    for (int i = 0; i < (sizeof(size) / 4); i++) {
-        printf("%d ", root->data);
-    }
-    printf("\n");
-}
+// void display(struct TreeNode* root, int size) {
+//     printf("Height of Tree: ");
+//     for (int i = 0; i < (sizeof(size) / 4); i++) {
+//         printf("%d ", root->data);
+//     }
+//     printf("\n");
+// }
 
 int main() {
     printf("Program will display the height of binary tree\n");
@@ -75,7 +85,10 @@ int main() {
 
     } while (NodeValue != 0);
 
-    display(root, root->data);
+    // display(root, root->data);
+
+    int height = TreeHeight(root);
+    printf("Height of tree: %d", height);
     
     printf("Values entered: ");
     FreeTree(root);
