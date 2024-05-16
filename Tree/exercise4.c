@@ -48,15 +48,36 @@ void FreeTree(struct TreeNode* root) {
         FreeTree(root->right);
         free(root);
     }
+    printf("\n");
+}
 
+void display(struct TreeNode* root, int size) {
+    printf("Height of Tree: ");
+    for (int i = 0; i < (sizeof(size) / 4); i++) {
+        printf("%d ", root->data);
+    }
+    printf("\n");
 }
 
 int main() {
     printf("Program will display the height of binary tree\n");
     struct TreeNode* root = NULL;
+    int NodeValue;
 
+    do
+    {
+        printf("Enter a value: (0 to end program): ");
+        scanf("%d", &NodeValue);
 
+        if (NodeValue != 0) {
+            root = insert_node(root, NodeValue);
+        }
 
+    } while (NodeValue != 0);
+
+    display(root, root->data);
+    
+    printf("Values entered: ");
     FreeTree(root);
     return 0;
 }
