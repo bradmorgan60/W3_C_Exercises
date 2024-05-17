@@ -51,7 +51,6 @@ int TreeHeight(struct TreeNode* root) {
     return (leftHeight > rightHeight) ? (leftHeight + 1) : (rightHeight + 1);
 }
 
-
 void FreeTree(struct TreeNode* root) {
     if (root != NULL) {
         FreeTree(root->left);
