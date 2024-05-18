@@ -11,31 +11,38 @@ The calloc() function allocates memory and initializes all bits to zero.
 
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+
+void display(int size, int *arr) {
+    printf("Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
+}
+
 int main() {
 
-    int num1, *ptr, sum = 0;
+    int size, *arr;
 
-    printf("Enter the number of elements: ");
-    scanf("%d", &num1);
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
 
-    ptr = (int*)malloc(num1 * sizeof(int));
+    arr = (int*) calloc(size, sizeof(int));
 
-   if (ptr == NULL) {
-        printf("Unable to allocate memory...");
-        return 1;
+    if (arr == NULL) {
+        printf("Memory cannot be allocated\n");
+    }
 
-   } else {
-        printf("Enter elements: ");
-        for (int i = 0; i < num1; i++) {
-            scanf("%d", ptr + i);
-            sum += *(ptr + i);
-        }
+    for (int i = 0; i < size; i++) {
+        printf("Element-%d: ", i + 1);
+        scanf("%d", (arr + i));
+    }
 
-        printf("Sum: %d\n", sum);
-   }
-   
-   free(ptr);
+    display(size, arr);
 
+    free(arr);
 
     return 0;
 }

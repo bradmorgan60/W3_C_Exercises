@@ -79,7 +79,7 @@ int main() {
 
     do
     {
-        printf("Enter value: ");
+        printf("\nEnter value: ");
         scanf("%d", &nodeValue);
 
         root = insert_node(root, nodeValue);
@@ -90,10 +90,10 @@ int main() {
 
             if (choice == 'y' || choice == 'Y') {
                 root = delete_node(root, nodeValue);
-                ++root;
+                ++root->data;
                 return nodeValue = 0;
             }
-            
+
     }
     } while (nodeValue != 0);
 
