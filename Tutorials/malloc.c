@@ -15,9 +15,9 @@ The calloc() function allocates memory and initializes all bits to zero.
 #include <stdlib.h>
 
 void display(int size, int *arr) {
-    printf("Array: ");
+    printf("\nArray: \n");
     for (int i = 0; i < size; i++) {
-        printf("%d ", *(arr + i));
+        printf("%d - %p\n", *(arr+i), arr + i);
     }
     printf("\n");
 }
@@ -33,6 +33,7 @@ int main() {
 
     if (arr == NULL) {
         printf("Memory cannot be allocated\n");
+        return 0;
     }
 
     for (int i = 0; i < size; i++) {
