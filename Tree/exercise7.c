@@ -1,6 +1,6 @@
 /*
-6. Write a C program to create a mirror image of a binary tree. 
-Print both the original and mirrored trees.
+7. Write a C program that extends the binary tree program to perform a level-order traversal. 
+Print the nodes at each level from top to bottom.
 */
 
 #include <stdio.h>
@@ -8,13 +8,14 @@ Print both the original and mirrored trees.
 
 struct TreeNode {
     int data;
-    struct TreeNode* left; // storing a pointer for variable 'left'
+    struct TreeNode* left;
     struct TreeNode* right;
 };
 
 struct TreeNode* create_node(int value) {
+    // allocate memory address space to new nodes added to the tree
     struct TreeNode* NewNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-
+    
     if (NewNode != NULL) {
         NewNode->data = value;
         NewNode->left = NULL;
@@ -27,7 +28,6 @@ struct TreeNode* create_node(int value) {
 struct TreeNode* insert_node(struct TreeNode* root, int value) {
     if (root == NULL) {
         return create_node(value);
-        // 'value' will be provided by the user
     }
 
     if (value < root->data) {
@@ -41,21 +41,30 @@ struct TreeNode* insert_node(struct TreeNode* root, int value) {
     return root;
 }
 
+// void display(struct TreeNode* root) {
+//     if (root != NULL) {
+//         display(root->left);
+//         printf("%d ", root->data);
+//         display(root->right);
+//     }
+// }
+
+int TreeHeight(struct TreeNode* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int leftHeight = TreeHeight(root->left);
+    int rightHeight = TreeHeight(root->right);
+
+    return (leftHeight > rightHeight) ? (leftHeight + 1) : (rightHeight + 1);
+}
+
 void display(struct TreeNode* root) {
-    // printf("Ascending: ");
     if (root != NULL) {
         display(root->left);
         printf("%d ", root->data);
         display(root->right);
-    }
-}
-
-void ReverseOrderTraversal(struct TreeNode* root) {
-    // printf("Descending: ");
-    if (root != NULL) {
-        ReverseOrderTraversal(root->right);
-        printf("%d ", root->data);
-        ReverseOrderTraversal(root->left);
     }
 }
 
@@ -66,31 +75,31 @@ void FreeTree(struct TreeNode* root) {
         free(root);
     }
 }
- 
+
 int main() {
     struct TreeNode* root = NULL;
     int NodeValue;
 
-    printf("Mirror Tree Exercise\n");
+    printf("Level-order traversal of a binary tree\n");
+    printf("--------------------\n");
 
     do
     {
-        printf("Enter a value: ");
-        scanf("%d", &NodeValue);
+       printf("Enter value: ");
+       scanf("%d", &NodeValue);
 
-        if (NodeValue != 0) {
+       if (root != NULL) {
             root = insert_node(root, NodeValue);
-        }
+       }
 
     } while (NodeValue != 0);
 
+    int height = TreeHeight(root);
+    printf("Height of tree: %d\n", height);
 
     display(root);
-    printf("\n");
-    // FreeTree(root);
-    ReverseOrderTraversal(root);
-    printf("\n");
+    // display(root);
     FreeTree(root);
-    
+
     return 0;
 }

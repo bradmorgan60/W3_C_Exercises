@@ -54,7 +54,6 @@ int TreeHeight(struct TreeNode* root) {
 void FreeTree(struct TreeNode* root) {
     if (root != NULL) {
         FreeTree(root->left);
-        // printf("%d ", root->data);
         FreeTree(root->right);
         free(root);
     }
