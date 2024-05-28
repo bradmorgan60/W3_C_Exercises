@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
 
 struct Queue {
     int front;
