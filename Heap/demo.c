@@ -2,78 +2,63 @@
 #include <stdlib.h>
 #define MAX_HEAP_SIZE 100
 
-/*
-1. Write a C program that implements the basic operations of a heap - insert, delete, and display.
-*/
-
-// In a heap, we will be working with a tree that consists of root nodes and child nodes
-// we can also visualize this in the form of an array
-
 struct Heap {
-   int arr[MAX_HEAP_SIZE];
-   int size;
+    // Dealing with the heap means that you will be indexing an array....a lot. Create a struct for it.
+    int arr[MAX_HEAP_SIZE];
+    int size; // important for indexing the array, be sure to subtract 1
 };
 
-void display(int size, int *arr) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", *(arr + i));
+void display(struct Heap *heap) {
+    printf("Elements: ");
+    for (int i = 0; i < heap->size; i++) {
+        printf("%d ", heap->arr[i]);
     }
     printf("\n");
 }
 
-int compare(int a, int b) {
-    return a > b;
+void swap(int *num1, int *num2) {
+    int temp;
+    temp = *num1;
+    *num1 = *num2;
+    *num2 = temp;
 }
 
-void swap(int num1, int num2) {
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}
+void HeapifyUp(struct Heap *heap, int index) {
+    int parent = (index - 1) / 2;
 
-// 
-void HeapifyDown(struct Heap *heap, int index) {
-    int largest = index;
-    int leftChild = 2 * index + 1;
-    int rightChild = 2 * index + 2;
-
-    if (heap->arr[leftChild] > heap->arr[largest])
-        {
-            largest = leftChild;
-        }
-    
-    if (heap->arr[rightChild] > heap->arr[largest])
-        {
-            largest = rightChild;
-        }
-    
-    if (index != largest) {
-        swap(heap->arr[index], heap->arr[largest]);
-        HeapifyDown(heap, largest);
+    // How?
+    while (index > 0 && heap->arr[index] > heap->arr[parent]) {
+        /*
+        Think: What happens to the newly inserted value? Does the array get rearranged?
+        We need to account for this. If the newly inserted value is greater than the superordinate root, then we swap.
+        */
+        swap(&heap->arr[index], &heap->arr[parent]);
+        index = parent;
+        parent = (index - 1) / 2;
     }
+}
 
+void insert(struct Heap *heap, int key) {
+    if (heap->size >= MAX_HEAP_SIZE) {
+        printf("Heap overflow...\n");
+        return;
+    }
+    heap->arr[heap->size] = key;
+    heap->size++; // increment the heap size by 1 upon insertion
+
+    HeapifyUp(heap, heap->size - 1);
 }
 
 int main() {
     struct Heap heap;
-    int size, *arr;
-    printf("Demo environment for working with Heap data structure\n");
-    printf("Enter the size of the tree: ");
-    scanf("%d", &size);
+    heap.size = 0;
 
-    arr = calloc(size, sizeof(int));
-
-    for (int i = 0; i < size; i++) {
-        printf("Element-%d: ", i + 1);
-        scanf("%d", arr + i);
-    }
-    printf("Initial: ");
-    display(size, arr);
-
-    swap(size, arr);
-
-    printf("Reverse: ");
-    display(size, arr);
-
+    insert(&heap, 330);
+    insert(&heap, 60);
+    insert(&heap, 90);
+    insert(&heap, 120);
+    insert(&heap, 150);
+    
+    display(&heap);
     return 0;
 }

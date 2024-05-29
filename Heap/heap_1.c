@@ -30,6 +30,19 @@ void HeapifyUp(struct Heap *heap, int index) {
         parent = (index - 1) / 2; // Update the parent index
     }
 }
+// What if we want to insert an element into the heap? This could be anywhere in the heap
+void insert(struct Heap *heap, int key) {
+    if (heap->size >= MAX_HEAP_SIZE)
+    {
+        printf("Heap overflow....\n");
+        return;
+    }
+
+    heap->arr[heap->size] = key; // insert the key at the end of the heap...what does that mean
+    heap->size++; // increase size of the heap
+
+    // HeapifyUp(heap, heap->size - 1); // Restore the max heap property
+}
 
 // just like in exercise 2, except we have the array and size in the struct
 void HeapifyDown(struct Heap *heap, int index) { 
@@ -52,20 +65,6 @@ void HeapifyDown(struct Heap *heap, int index) {
         swap(&heap->arr[index], &heap->arr[largest]);
         HeapifyDown(heap, largest);
     }
-}
-
-// What if we want to insert an element into the heap? This could be anywhere in the heap
-void insert(struct Heap *heap, int key) {
-    if (heap->size >= MAX_HEAP_SIZE)
-    {
-        printf("Heap overflow....\n");
-        return;
-    }
-
-    heap->arr[heap->size] = key; // insert the key at the end of the heap...what does that mean
-    heap->size++; // increase size of the heap
-
-    HeapifyUp(heap, heap->size - 1); // Restore the max heap property
 }
 
 // Function to delete the root element from the heap
