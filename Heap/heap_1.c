@@ -37,6 +37,16 @@ void display_reg(int size, int *arr) {
     printf("\n");
 }
 
+void HeapifyUp(struct Heap *heap, int index) {
+    int parent = (index - 1) / 2;
+
+    while (index > 0 && heap->arr[index] > heap->arr[parent]) {
+        swap(&heap->arr[index], &heap->arr[parent]);
+        index = parent; // assigning swapped element with to parent
+        parent = (index - 1) / 2;  // maintain the parent
+    }
+}
+
 void insert(struct Heap *heap, int key) {
     if (heap->size >= MAX_HEAP_SIZE) {
         printf("Heap overflow...\n");
@@ -44,6 +54,8 @@ void insert(struct Heap *heap, int key) {
 
     heap->arr[heap->size] = key;
     heap->size++;
+
+    HeapifyUp(heap, heap->size - 1);
 }
 
 int main() {
@@ -67,12 +79,12 @@ int main() {
     // display(&heap);
     // error occurs because we do not have memory dynamically allocating to the heap
 
-    // printf("Display via pointer: ");
-    // display_pointer(size, arr);
+    printf("Display via pointer: ");
+    display_pointer(size, arr);
     // works
 
-    printf("Regular display: ");
-    display_reg(size, arr);
+    // printf("Regular display: ");
+    // display_reg(size, arr);
     // works
     return 0;
 }
