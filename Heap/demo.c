@@ -3,7 +3,7 @@
 #define MAX_HEAP_SIZE 100
 
 struct Heap {
-    // Dealing with the heap means that you will be indexing an array....a lot. Create a struct for it.
+    // Dealing with the heap means that you will be indexing an array....a lot. Create a struct for it, as this will be utilized in many of the subsequent functions.
     int arr[MAX_HEAP_SIZE];
     int size; // important for indexing the array, be sure to subtract 1
 };
