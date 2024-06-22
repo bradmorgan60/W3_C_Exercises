@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_HEAP_SIZE 100
+#define MAX_heap_SIZE 100
 
-struct Heap {
+struct heap {
     // Dealing with the heap means that you will be indexing an array....a lot. Create a struct for it, as this will be utilized in many of the subsequent functions.
-    int arr[MAX_HEAP_SIZE];
+    int arr[MAX_heap_SIZE];
     int size; // important for indexing the array, be sure to subtract 1
 };
 
-void display(struct Heap *heap) {
+void display(struct heap *heap) {
     printf("Elements: ");
     for (int i = 0; i < heap->size; i++) {
         printf("%d ", heap->arr[i]);
@@ -23,7 +23,7 @@ void swap(int *num1, int *num2) {
     *num2 = temp;
 }
 
-void HeapifyUp(struct Heap *heap, int index) {
+void heapifyUp(struct heap *heap, int index) {
     int parent = (index - 1) / 2;
 
     // How?
@@ -38,19 +38,19 @@ void HeapifyUp(struct Heap *heap, int index) {
     }
 }
 
-void insert(struct Heap *heap, int key) {
-    if (heap->size >= MAX_HEAP_SIZE) {
-        printf("Heap overflow...\n");
+void insert(struct heap *heap, int key) {
+    if (heap->size >= MAX_heap_SIZE) {
+        printf("heap overflow...\n");
         return;
     }
     heap->arr[heap->size] = key;
     heap->size++; // increment the heap size by 1 upon insertion
 
-    HeapifyUp(heap, heap->size - 1);
+    heapifyUp(heap, heap->size - 1);
 }
 
 int main() {
-    struct Heap heap;
+    struct heap heap;
     heap.size = 0;
 
     insert(&heap, 330);

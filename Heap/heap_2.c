@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_HEAP_SIZE 100
+#define MAX_heap_SIZE 100
 
 typedef int (* my_pointer)(int, int);
 
@@ -12,7 +12,7 @@ void swap(int *num1, int *num2) {
     *num2 = temp;
 }
 
-void HeapifyDown(int index, int size, int *arr) {
+void heapifyDown(int index, int size, int *arr) {
     int largest = index;
     int leftChild = 2 * index + 1;
     int rightChild = 2 * index + 2;
@@ -27,7 +27,7 @@ void HeapifyDown(int index, int size, int *arr) {
 
     if (index != largest) {
         swap(&arr[index], &arr[largest]);
-        HeapifyDown(largest, size, arr);
+        heapifyDown(largest, size, arr);
     }
 }
 
@@ -58,9 +58,9 @@ void display(int *arr, int size) {
     printf("\n");
 }
 
-void BuildMaxHeap(int size, int *arr) {
+void BuildMaxheap(int size, int *arr) {
     for (int i = (size / 2) - 1; i >= 0; i--) {
-        HeapifyDown(i, size, arr);
+        heapifyDown(i, size, arr);
     }
 }
 
@@ -82,7 +82,7 @@ int main() {
     sort(arr, size);
 
     printf("Max heap: ");
-    BuildMaxHeap(size, arr);
+    BuildMaxheap(size, arr);
     display(arr, size);
 
 
